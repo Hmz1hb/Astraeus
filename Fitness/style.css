@@ -60,6 +60,7 @@ img
 
 
 /*-------------- Hero styling starts ------------*/
+
 .hero
 {
 	height: 100vh;
@@ -270,7 +271,7 @@ img
 .footer-widget
 {
 	height: 60vh;
-	background-image: url(img/bradcam_2.png);
+	background-image: url(img/bradcam_1.png);
 	background-size: cover;
 	background-position: center center;
 }
