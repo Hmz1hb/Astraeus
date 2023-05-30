@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+ const API_URL = 'https://exercisedb.p.rapidapi.com/exercises/names';
+const headers = {
+  'X-RapidAPI-Key': '4985e413b9msh25fb6137f1cb0f2p1de0c9jsn8c34bcd64f41',
+  'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+};
+
+fetch(API_URL, { headers })
+  .then(response => response.json())
+  .then(data => {
+    // Create a new element to display the data
+    const dataElement = document.createElement('div');
+    dataElement.textContent = JSON.stringify(data);
+
+    // Append the element to the body of the page
+    document.body.appendChild(dataElement);
+  })
+  .catch(error => console.error(error));
+    </script>
+</body>
+</html>

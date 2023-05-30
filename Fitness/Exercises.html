@@ -112,71 +112,37 @@
         <h1 class="h2">Exercises</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-            </div>
-            <div class="btn-group me-2">
               <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                Categories
+                Body part
               </button>
-              <ul class="dropdown-menu ">
-                <li><a class="dropdown-item" href="#" onclick="filterByCategory('Barbell')">Barbell</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByCategory('Dumbbells')">Dumbbells</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByCategory('Kettlebells')">Kettlebells</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByCategory('Stretches')">Stretches</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByCategory('Cables')">Cables</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByCategory('Band')">Band</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByCategory('Plate')">Plate</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByCategory('TRX')">TRX</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByCategory('Bodyweight')">Bodyweight</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByCategory('Yoga')">Yoga</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByCategory('Machine')">Machine</a></li>
+              <ul class="dropdown-menu text-capitalize ">
+                <li><a class="dropdown-item" href="#" onclick="filterByCategory('back', 'bodyPart')">back</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filterByCategory('cardio', 'bodyPart')">cardio</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filterByCategory('chest', 'bodyPart')">chest</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filterByCategory('lower arms', 'bodyPart')">lower arms</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filterByCategory('lower legs', 'bodyPart')">lower legs</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filterByCategory('shoulders', 'bodyPart')">shoulders</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filterByCategory('upper arms', 'bodyPart')">upper arms</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filterByCategory('upper legs', 'bodyPart')">upper legs</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filterByCategory('waist', 'bodyPart')">waist</a></li>
               </ul>
             </div>
             <div class="btn-group me-2">
               <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                Difficulties
+                equipment
               </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#" onclick="filterByDifficulty('Beginner')">Beginner</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByDifficulty('Intermediate')">Intermediate</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByDifficulty('Advanced')">Advanced</a></li>
-              </ul>
-            </div>
-            <div class="btn-group me-2">
-              <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                Forces
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#" onclick="filterByForce('Pull')">Pull</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByForce('Push')">Push</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByForce('Hold')">Hold</a></li>
-              </ul>
-            </div>
-            <div class="btn-group me-2">
-              <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                Muscles
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#" onclick="filterByMuscle('Biceps')">Biceps</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByMuscle('Forearms')">Forearms</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByMuscle('Shoulders')">Shoulders</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByMuscle('Triceps')">Triceps</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByMuscle('Quads')">Quads</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByMuscle('Glutes')">Glutes</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByMuscle('Lats')">Lats</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByMuscle('Mid back')">Mid back</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByMuscle('Lower back')">Lower back</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByMuscle('Hamstrings')">Hamstrings</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByMuscle('Chest')">Chest</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByMuscle('Abdominals')">Abdominals</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByMuscle('Obliques')">Obliques</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByMuscle('Traps')">Traps</a></li>
-                <li><a class="dropdown-item" href="#" onclick="filterByMuscle('Calves')">Calves</a></li>
+              <ul class="dropdown-menu text-capitalize">
+                <li><a class="dropdown-item" href="#" onclick="filterByCategory('dumbbell','equipment')">dumbbell</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filterByCategory('barbell','equipment')">barbell</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filterByCategory('machine','equipment')">machine</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filterByCategory('cable','equipment')">cable</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filterByCategory('bodyweight','equipment')">bodyweight</a></li>
               </ul>
             </div>
           </div>
       </div>
       <div id="exerciseCardsContainer" class="row">
-      <div class="card bg-dark text-white col-3">
+      <div class="card bg-dark text-white  ">
         <div class="card-body">
           <h5 class="card-title">Exercise Details</h5>
           <p class="card-text">Click below to view exercise details.</p>
@@ -184,6 +150,16 @@
         </div>
       </div>
       </div>
+      <nav aria-label="Page navigation example ">
+        <ul class="pagination bg-dark">
+          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+      
       
       <!-- Modal -->
       <div class="modal fade" id="exerciseModal" tabindex="-1" aria-labelledby="exerciseModalLabel" aria-hidden="true">
@@ -210,94 +186,96 @@
   </div>
 </div>
 <script>
-
-let exercises; // Declare exercises at a higher scope
-
-async function loadJSON(jsonFilePath) {
-  const response = await fetch(jsonFilePath);
-  exercises = await response.json(); // Store the result in exercises
-  displayExercises(exercises); // Call displayExercises directly from here
-}
-
-loadJSON('./workoutdata.json'); // Call the function
-
-function displayModalData(id) {
-  const exercise = exercises.find(exercise => exercise.id === id);
-  const modalBody = document.querySelector('.modal-body');
-
-  modalBody.innerHTML = `
-    <div class="modal-body">
-      <h3>Category: ${exercise.Category}</h3>
-      <h3>Difficulty: ${exercise.Difficulty}</h3>
-      <h3>Force: ${exercise.Force}</h3>
-      <h3>Grips: ${exercise.Grips}</h3>
-      <h5>Details:</h5>
-      <p>${exercise.details}</p>
-      <h5>Steps:</h5>
-      <ol>
-        ${exercise.steps.map(step => `<li>${step}</li>`).join('')}
-      </ol>
-      <div class="ratio ratio-16x9">
-        <iframe src="${exercise.youtubeURL}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-    </div>
-  `;
-}
-
-// Global variable to store the original exercises data
-let originalExercisesData = [];
-
-function displayExercises(data) {
-  const exerciseCardsContainer = document.querySelector('#exerciseCardsContainer');
-  exerciseCardsContainer.innerHTML = '';
-
-  data.forEach(exercise => {
-    const exerciseCard = document.createElement('div');
-    exerciseCard.classList.add('col-3');
-    exerciseCard.classList.add('mb-4');
-
-    exerciseCard.innerHTML = `
-    <div class="card bg-dark text-white">
-        <div class="card-body">
-          <h5 class="card-title">${exercise.exercise_name}</h5>
-          <p class="card-text">Click below to view exercise details.</p>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exerciseModal" onclick="displayModalData(${exercise.id})">Go Somewhere</button>
+    
+    const API_URL = 'https://exercisedb.p.rapidapi.com/exercises';
+    const headers = {
+      'X-RapidAPI-Key': '3ec250bf1cmsh6ba74139d7fb301p1de1eejsn7dbf4db26f0c',
+      'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+    };
+  
+    let exercises; // Declare exercises at a higher scope
+  
+    async function loadExercises() {
+      const response = await fetch(API_URL, {
+        method: 'GET',
+        headers: headers
+      });
+      exercises = await response.json(); // Store the result in exercises
+      originalExercisesData = [...exercises]; // Store a copy of the original data
+      displayExercises(exercises); // Call displayExercises directly from here
+    }
+  
+    loadExercises(); // Call the function
+  
+    function displayModalData(id) {
+      const exercise = exercises.find(exercise => exercise.id === id);
+      const modalBody = document.querySelector('.modal-body');
+  
+      modalBody.innerHTML = `
+        <div class="modal-body ">
+          <h3 class="">Name: ${exercise.name}</h3>
+          <h3>Target: ${exercise.target}</h3>
+          <h3>Body Part: ${exercise.bodyPart}</h3>
+          <h3>Equipment: ${exercise.equipment}</h3>
+          <div class="ratio ratio-16x9">
+            <img src="${exercise.gifUrl}" alt="${exercise.name}" />
+          </div>
         </div>
-      </div>
-    `;
+      `;
+    }
+  
+    // Global variable to store the original exercises data
+    let originalExercisesData = [];
+  
+    function displayExercises(data) {
+      const exerciseCardsContainer = document.querySelector('#exerciseCardsContainer');
+      exerciseCardsContainer.innerHTML = '';
+  
+      data.forEach(exercise => {
+        const exerciseCard = document.createElement('div');
+        exerciseCard.classList.add('col-3');
+        exerciseCard.classList.add('mb-4');
+  
+        exerciseCard.innerHTML = `
+          <div class="card bg-dark text-white">
+            <div class="card-body">
+                <img src="${exercise.gifUrl}" class="card-img-top" alt="${exercise.name}">
+              <h5 class="card-title">${exercise.name}</h5>
+              <p class="card-text">Click below to view exercise details.</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exerciseModal" onclick="displayModalData('${exercise.id}')">Go Somewhere</button>
+            </div>
+          </div>
+        `;
+  
+        exerciseCardsContainer.appendChild(exerciseCard);
+      });
+    }
+  
+  // Global variables to store the selected body part and equipment
+let selectedBodyPart = '';
+let selectedEquipment = '';
 
-    exerciseCardsContainer.appendChild(exerciseCard);
-  });
-}
+function filterByCategory(category, type) {
+  // Store the selected body part or equipment
+  if (type === 'bodyPart') {
+    selectedBodyPart = category;
+  } else if (type === 'equipment') {
+    selectedEquipment = category;
+  } else {
+    console.error('Invalid type. Type must be either "bodyPart" or "equipment".');
+    return;
+  }
 
-// Function to filter exercises by category
-function filterByCategory(category) {
-  const filteredExercises = exercises.filter(exercise => exercise.Category === category);
+  // Filter the original exercises data based on the selected body part and equipment
+  const filteredExercises = originalExercisesData.filter(exercise => 
+    (!selectedBodyPart || exercise.bodyPart === selectedBodyPart) && 
+    (!selectedEquipment || exercise.equipment === selectedEquipment));
+
+  // Then display the filtered exercises
   displayExercises(filteredExercises);
 }
 
-// Function to filter exercises by difficulty
-function filterByDifficulty(difficulty) {
-  const filteredExercises = exercises.filter(exercise => exercise.Difficulty === difficulty);
-  displayExercises(filteredExercises);
-}
-
-// Function to filter exercises by force
-function filterByForce(force) {
-  const filteredExercises = exercises.filter(exercise => exercise.Force === force);
-  displayExercises(filteredExercises);
-}
-
-// Function to filter exercises by muscle
-function filterByMuscle(muscle) {
-  const filteredExercises = exercises.filter(exercise => exercise.Muscles.includes(muscle));
-  displayExercises(filteredExercises);
-}
-
-
-
-
-
+  
   </script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut+XGSABKvjN0H6Aoow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 
