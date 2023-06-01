@@ -127,3 +127,52 @@ body {
   background-color: #f9ef23;
   color: #000;
 }
+
+.my-custom-pagination-button .page-link {
+  background-color: #343a40; /* bg-dark */
+  color: #ffffff; /* White text */
+  border: #f9ef23;
+}
+
+.my-custom-pagination-button:hover .page-link,
+.my-custom-pagination-button.active .page-link {
+  background-color: #f9ef23; /* Your custom color */
+  color: #343a40; /* White text */
+}
+
+.btn-custom {
+  background-color: #343a40; /* bg-dark */
+  color: #ffffff; /* White text */
+  border: #f9ef23;
+}
+
+.btn-custom:hover {
+  background-color: #f9ef23; /* Your custom color */
+  color: #343a40; /* White text */
+}
+
+
+
+.suggestions {
+  background: #343a40; /* bg-dark */
+  color: #ffffff; /* White text */
+  border: 1px solid #343a40; /* Custom yellow border */
+  border-radius: 3px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1; /* to make sure it's above other content */
+  width: 100%;
+}
+
+.suggestions div {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #f9ef23; /* Custom yellow border */
+}
+
+.suggestions div:hover {
+  background-color: #f9ef23; /* Your custom color */
+  color: #343a40; /* Dark text */
+}
+
