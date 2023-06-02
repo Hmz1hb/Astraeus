@@ -176,3 +176,19 @@ body {
   color: #343a40; /* Dark text */
 }
 
+
+  .video-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .modal-video {
+    width: 48%;  /* you can adjust this as per your need */
+  }
+
+  @media (max-width: 600px) {
+    .modal-video {
+      width: 100%;
+    }
+  }
