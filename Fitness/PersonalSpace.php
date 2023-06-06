@@ -47,13 +47,13 @@ $userId = $_SESSION['user_id'];
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation " >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="position-relative w-100">
-      <form action="">
-      <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search" type="text" id="searchInput" oninput="updateSuggestions()" placeholder="Search exercises..." autocomplete="off">
-      <button class="btn btn-outline-success" type="submit" style="display: none;">Search</button>
-    </form>
-      <div id="suggestions" class="suggestions position-absolute w-100">
-      </div>
+      <!-- <div class="position-relative w-100">
+        <form action="">
+        <input class="form-control form-control-dark w-100 rounded-0 border-0  " type="text" placeholder="Search" aria-label="Search" type="text" id="searchInput" oninput="updateSuggestions()" placeholder="Search exercises..." autocomplete="off" >
+        <button class="btn btn-outline-success" type="submit" style="display: none;">Search</button>
+      </form>
+        <div id="suggestions" class="suggestions position-absolute w-100">
+        </div> -->
     </div>
     <div class="navbar-nav">
       <div class="nav-item text-nowrap">
@@ -68,19 +68,19 @@ $userId = $_SESSION['user_id'];
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="./UserInt.html">
+            <a class="nav-link " aria-current="page" href="./UserInt.php">
               <span data-feather="home" class="align-text-bottom"></span>
               Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="./PersonalSpace.html">
+            <a class="nav-link active" href="./PersonalSpace.php">
               <span data-feather="file" class="align-text-bottom"></span>
               Personal Wellbeing
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="./BFP.html">
+            <a class="nav-link " href="./BFP.php">
               <span data-feather="file" class="align-text-bottom"></span>
               Body Fat Percentage
             </a>
@@ -98,13 +98,13 @@ $userId = $_SESSION['user_id'];
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./food.html">
+            <a class="nav-link" href="./food.php">
               <i class="fa-solid fa-drumstick-bite"></i>
               Mass Meals Recipes
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="./Exercises.html">
+            <a class="nav-link " href="./Exercises.php">
               <i class="fas fa-light fa-dumbbell align-text-bottom"></i>
               Exercise Tutorials
             </a>
@@ -148,7 +148,7 @@ $userId = $_SESSION['user_id'];
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 ">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">YOUR Name</h1>
+        <h1 class="h2">Your Profile</h1>
       </div>
       <section>
         <div class="container-fluid py-5">
@@ -158,9 +158,9 @@ $userId = $_SESSION['user_id'];
                 <div class="card-body text-center ">
                   <img src="./img/author-c.png" alt="avatar"
                     class="rounded-circle img-fluid" style="aspect-ratio: 1; width: 15rem;">
-                  <h5 class="my-3">First name + last name</h5>
+                  <!-- <h5 class="my-3" id="fullName">First name + last name</h5> -->
                   <p class=" mb-1">is he a premuim user</p>
-                  <p class=" mb-4">Gender</p>
+                  <!-- <p class=" mb-4">Gender</p> -->
                   <div class="d-flex justify-content-center mb-2">
                     <button type="button" class="btn btn-custom" id="editButton">Edit</button>
                   </div>
@@ -211,7 +211,7 @@ $userId = $_SESSION['user_id'];
                       <p class="mb-0">Weight</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class=" mb-0" id="weight">90 Kg</p>
+                      <p class=" mb-0" id="weight"></p>
                     </div>
                   </div>
                   <hr>
@@ -220,7 +220,7 @@ $userId = $_SESSION['user_id'];
                       <p class="mb-0">Height</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class=" mb-0" id="height">183 Cm</p>
+                      <p class=" mb-0" id="height"></p>
                     </div>
                   </div>
                   <hr>
@@ -229,7 +229,7 @@ $userId = $_SESSION['user_id'];
                       <p class="mb-0">Age</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class=" mb-0" id="age">20 Years old</p>
+                      <p class=" mb-0" id="age"></p>
                     </div>
                   </div>
                   <hr>
@@ -238,7 +238,7 @@ $userId = $_SESSION['user_id'];
                       <p class="mb-0">Waist Measurements</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class=" mb-0" id="Waist">57 CM</p>
+                      <p class=" mb-0" id="Waist"></p>
                     </div>
                   </div>
                   <hr>
@@ -247,7 +247,7 @@ $userId = $_SESSION['user_id'];
                       <p class="mb-0">Neck Measurements</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class=" mb-0" id="Neck">33 CM</p>
+                      <p class=" mb-0" id="Neck"></p>
                     </div>
                   </div>
                   <hr>
@@ -256,7 +256,7 @@ $userId = $_SESSION['user_id'];
                       <p class="mb-0">Hip Measurements</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class=" mb-0" id="Hip">50 CM</p>
+                      <p class=" mb-0" id="Hip"></p>
                     </div>
                   </div>
                 </div>
@@ -317,7 +317,14 @@ $userId = $_SESSION['user_id'];
         </div>
       </div>
       
-    
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Your Profile</h1>
+      </div>
+            <div class="col-lg-8">
+              
+                  
+             
+            </div>
 </main>
 </div>
 </div>

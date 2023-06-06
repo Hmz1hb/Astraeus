@@ -4,7 +4,7 @@ require_once 'db.php';
 session_start();
 $userID = $_SESSION['user_id'];
 
-$query = "SELECT Name as fullName, Gender as gender, Weight as weight, Height as height, Age as age, waist as Waist, neck as Neck, hip as Hip, phone as Phone, email as Email
+$query = "SELECT Name as fullName, Gender as gender, Weight as weight, Height as height, Age as age, waist as Waist, neck as Neck, hip as Hip, phone as phone, email as email
 FROM user 
 WHERE UserID = :userID
 ";

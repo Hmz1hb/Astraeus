@@ -99,7 +99,7 @@
             <h5 class="card-title">${exercise.exercise_name}</h5>
             <p class="card-text">Click below to view exercise details.</p>
             <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#exerciseModal" onclick="displayModalData('${exercise.id}')">Details</button>
-            <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#exerciseModal" onclick="displayModalData('${exercise.id}')">Save</button>
+            <button type="button" class="btn btn-custom" onclick="displayModalSave('${exercise.id}')">Save</button>
           </div>
         </div>
       `;
@@ -107,7 +107,21 @@
       exerciseCardsContainer.appendChild(exerciseCard);
     });
   }
-
+  function displayModalSave(id) {
+    // Functionality for saving the exercise
+    $.ajax({
+        url: './nada.php', // Replace this with the actual URL of your PHP page
+        type: 'POST',
+        data: {id: id},
+        success: function(response) {
+            // Handle the response from the PHP page here
+            console.log(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('An error occurred: ' + textStatus);
+        }
+    });
+}
 // Global variables to store the selected body part and equipment
 let selectedCategory = '';
 let selectedDifficulty = '';

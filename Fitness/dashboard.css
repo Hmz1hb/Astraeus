@@ -144,6 +144,7 @@ body {
   background-color: #343a40; /* bg-dark */
   color: #ffffff; /* White text */
   border: #f9ef23;
+  margin: 5px;
 }
 
 .btn-custom:hover {
@@ -241,4 +242,10 @@ body {
   p{
     font-size:1.1rem;
     /* color: #f9ef23; */
+  }
+
+  .custom-inp{
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
   }

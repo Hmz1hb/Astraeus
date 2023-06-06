@@ -42,19 +42,19 @@
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="./UserInt.html">
+            <a class="nav-link " aria-current="page" href="./UserInt.php">
               <span data-feather="home" class="align-text-bottom"></span>
               Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="./PersonalSpace.html">
+            <a class="nav-link " href="./PersonalSpace.php">
               <span data-feather="file" class="align-text-bottom"></span>
               Personal Wellbeing
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="./BFP.html">
+            <a class="nav-link " href="./BFP.php">
               <span data-feather="file" class="align-text-bottom"></span>
               Body Fat Percentage
             </a>
@@ -72,13 +72,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./food.html">
+            <a class="nav-link" href="./food.php">
               <i class="fa-solid fa-drumstick-bite"></i>
               Mass Meals Recipes
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="./Exercises.html">
+            <a class="nav-link active" href="./Exercises.php">
               <i class="fas fa-light fa-dumbbell align-text-bottom"></i>
               Exercise Tutorials
             </a>

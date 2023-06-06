@@ -169,19 +169,19 @@ footer a:hover {
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="./UserInt.html">
+            <a class="nav-link " aria-current="page" href="./UserInt.php">
               <span data-feather="home" class="align-text-bottom"></span>
               Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./PersonalSpace.html">
+            <a class="nav-link" href="./PersonalSpace.php">
               <span data-feather="file" class="align-text-bottom"></span>
               Personal Wellbeing
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="./BFP.html">
+            <a class="nav-link active" href="./BFP.php">
               <span data-feather="file" class="align-text-bottom"></span>
               Body Fat Percentage
             </a>
@@ -199,13 +199,13 @@ footer a:hover {
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./food.html">
+            <a class="nav-link" href="./food.php">
               <i class="fa-solid fa-drumstick-bite"></i>
               Mass Meals Recipes
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="./Exercises.html">
+            <a class="nav-link " href="./Exercises.php">
               <i class="fas fa-light fa-dumbbell align-text-bottom"></i>
               Exercise Tutorials
             </a>
@@ -625,7 +625,11 @@ const imgToggler = document.getElementById('img-toggler')
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
-       <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
+
+       </script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+
+       <script src="./dashboard.js"></script>
         
        <!-- <script src="./Food.js"></script> -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 $error = '';
 $host = 'localhost';
 $db   = 'gymdata';
