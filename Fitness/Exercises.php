@@ -48,9 +48,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link " href="./PersonalSpace.html">
               <span data-feather="file" class="align-text-bottom"></span>
               Personal Wellbeing
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="./BFP.html">
+              <span data-feather="file" class="align-text-bottom"></span>
+              Body Fat Percentage
             </a>
           </li>
           <li class="nav-item">

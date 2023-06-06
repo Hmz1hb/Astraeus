@@ -192,3 +192,53 @@ body {
       width: 100%;
     }
   }
+
+  .form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9ef23;
+    color: #333;
+    border-radius: 5px;
+  }
+
+  .form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .form-container .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-container .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .form-container .form-group input,
+  .form-container .form-group select,
+  .form-container .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .form-container .form-group button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #f9ef23;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  p{
+    font-size:1.1rem;
+    /* color: #f9ef23; */
+  }
