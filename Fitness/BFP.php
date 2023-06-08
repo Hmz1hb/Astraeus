@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+// Connect to your database. Replace the following with your actual database connection details
+$db = new PDO('mysql:host=localhost;dbname=gymdata;charset=utf8', 'root', '');
+
+// Assuming that the user id is stored in the session
+$userId = $_SESSION['user_id'];
+$query = $db->prepare('SELECT * FROM user WHERE UserID = ?');
+$query->execute([$userId]);
+$userData = $query->fetch(PDO::FETCH_ASSOC);
+
+$birthDate = new DateTime($userData['Age']);
+$currentDate = new DateTime();
+$ageInterval = $currentDate->diff($birthDate);
+$age = $ageInterval->y;
+
+
+
+?>
+
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -350,7 +373,7 @@ footer a:hover {
                                                 <div class="w-75 mx-auto">
                                                     <label class="form-label" for="neck-input">Neck</label>
                                                     <div class="input-group flex-nowrap shadow-sm">
-                                                        <input class="form-control text-center" type="number" id="neck-input" aria-describedby="neck-cm" min="20" max="80">
+                                                        <input class="form-control text-center" type="number"   id="neck-input" aria-describedby="neck-cm" min="20" max="80" value="<?php echo $userData['neck']; ?>">
                                                         <span class="input-group-text" id="neck-cm">cm</span>
                                                     </div>
                                                 </div>
@@ -359,7 +382,7 @@ footer a:hover {
                                                 <div class="w-75 mx-auto">
                                                     <label class="form-label" for="waist-input">Waist</label>
                                                     <div class="input-group flex-nowrap shadow-sm">
-                                                        <input class="form-control text-center" type="number" id="waist-input" aria-describedby="waist-cm" min="40" max="130">
+                                                        <input class="form-control text-center" type="number" id="waist-input" aria-describedby="waist-cm" min="40" max="130"value="<?php echo $userData['waist']; ?>">
                                                         <span class="input-group-text" id="waist-cm">cm</span>
                                                     </div>
                                                 </div>
@@ -368,7 +391,7 @@ footer a:hover {
                                                 <div class="w-75 mx-auto">
                                                     <label class="form-label" for="hip-input">Hip</label>
                                                     <div class="input-group flex-nowrap shadow-sm">
-                                                        <input class="form-control text-center" type="number" id="hip-input" aria-describedby="hip-cm" min="40" max="130">
+                                                        <input class="form-control text-center" type="number" id="hip-input" aria-describedby="hip-cm" min="40" max="130"value="<?php echo $userData['hip']; ?>">
                                                         <span class="input-group-text" id="hip-cm">cm</span>
                                                     </div>
                                                 </div>
@@ -377,7 +400,7 @@ footer a:hover {
                                                 <div class="w-75 mx-auto">
                                                     <label class="form-label" for="age-input">Age</label>
                                                     <div class="input-group flex-nowrap shadow-sm">
-                                                        <input class="form-control text-center" type="number" id="age-input" aria-describedby="age-years" min="1" max="80">
+                                                        <input class="form-control text-center" type="number" id="age-input" aria-describedby="age-years" min="1" max="80"value="<?php echo $age; ?>">
                                                         <span class="input-group-text" id="age-years">years</span>
                                                     </div>
                                                 </div>
@@ -386,7 +409,7 @@ footer a:hover {
                                                 <div class="w-75 mx-auto">
                                                     <label class="form-label" for="height-input">Height</label>
                                                     <div class="input-group flex-nowrap shadow-sm">
-                                                        <input class="form-control text-center" type="number" id="height-input" aria-describedby="height-cm" min="130" max="230">
+                                                        <input class="form-control text-center" type="number" id="height-input" aria-describedby="height-cm" min="130" max="230"value="<?php echo $userData['Height']; ?>">
                                                         <span class="input-group-text" id="height-cm">cm</span>
                                                     </div>
                                                 </div>
@@ -395,7 +418,7 @@ footer a:hover {
                                                 <div class="w-75 mx-auto">
                                                     <label class="form-label" for="weight-input">Weight</label>
                                                     <div class="input-group flex-nowrap shadow-sm">
-                                                        <input class="form-control text-center" type="number" id="weight-input" aria-describedby="weight-cm" min="40" max="160">
+                                                        <input class="form-control text-center" type="number" id="weight-input" aria-describedby="weight-cm" min="40" max="160"value="<?php echo $userData['Weight']; ?>">
                                                         <span class="input-group-text" id="weight-kg">kg</span>
                                                     </div>
                                                 </div>
@@ -403,7 +426,7 @@ footer a:hover {
                                             <div class="col-12 d-flex flex-column justify-content-center mb-5 d-none d-md-block">
                                                 <div class="text-center position-relative w-100">
                                                     <label class="form-label" for="weight-range-input">Weight</label><br/>
-                                                    <input class="form-range" type="range" id="weight-range-input" min="40" max="160" value="100">
+                                                    <input class="form-range" type="range" id="weight-range-input" min="40" max="160" value="<?php echo $userData['Weight']; ?>">
                                                     <span id="weight-indicator" class="position-absolute text-white rounded-pill"></span>
                                                 </div>
                                             </div>

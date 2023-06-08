@@ -34,49 +34,69 @@
 
   
   function displayModalData(id) {
-  const exercise = exercises.find(exercise => exercise.id === Number(id));
-
-  if (!exercise) {
-  console.log(`Exercise with id ${id} not found.`);
-  return;
-}
-
-  const modalBody = document.querySelector('.modal-body');
+    const exercise = exercises.find(exercise => exercise.id === Number(id));
+  
+    if (!exercise) {
+      console.log(`Exercise with id ${id} not found.`);
+      return;
+    }
+  
+    const modalBody = document.querySelector('.modal-body');
     const modalTitle = document.querySelector('.modal-header');
-    
+  
     modalTitle.innerHTML = `
-    <h5 class="modal-title" id="exerciseModalLabel">${exercise.exercise_name}</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <h5 class="modal-title" id="exerciseModalLabel">${exercise.exercise_name}</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     `;
-
-    modalBody.innerHTML = `
-    <div class="modal-body">
-    <video autoplay loop muted class="card-img-top modal-video">
-              <source src="${exercise.videoURL}"  type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <video autoplay loop muted class="card-img-top modal-video">
-              <source src="${exercise.videoURL[1]}"  type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-    <h3>Category: ${exercise.Category}</h3>
-    <h3>Difficulty: ${exercise.Difficulty}</h3>
-    <h3>Force: ${exercise.Force}</h3>
-    <h3>Grips: ${exercise.Grips}</h3>
-    <h5>Details:</h5>
-    <p>${exercise.details}</p>
-    <h5>Steps:</h5>
-    <ol>
-      ${exercise.steps.map(step => `<li>${step}</li>`).join('')}
-    </ol>
-    <div class="ratio ratio-16x9">
+  
+    let modalContent = '';
+  
+    modalContent += `
+      <div class="modal-body">
+        <video autoplay loop muted class="card-img-top modal-video">
+          <source src="${exercise.videoURL}"  type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video autoplay loop muted class="card-img-top modal-video">
+          <source src="${exercise.videoURL[1]}"  type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+    `;
+  
+    if (exercise.Category) {
+      modalContent += `<h3>Category: ${exercise.Category}</h3>`;
+    }
+  
+    if (exercise.Difficulty) {
+      modalContent += `<h3>Difficulty: ${exercise.Difficulty}</h3>`;
+    }
+  
+    if (exercise.Force) {
+      modalContent += `<h3>Force: ${exercise.Force}</h3>`;
+    }
+  
+    if (exercise.Grips) {
+      modalContent += `<h3>Grips: ${exercise.Grips}</h3>`;
+    }
+  
+   
+    if (exercise.details) {
+      modalContent += `<p><h5>Details:</h5>${exercise.details}</p>`;
+    }
+  
+    modalContent += `<h5>Steps:</h5><ol>`;
+  
+    if (exercise.steps && exercise.steps.length > 0) {
+      modalContent += `${exercise.steps.map(step => `<li>${step}</li>`).join('')}`;
+    }
+  
+    modalContent += `</ol><div class="ratio ratio-16x9">
       <iframe src="${exercise.youtubeURL}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    </div>
-  </div>
-`;
-    
+    </div></div>`;
+  
+    modalBody.innerHTML = modalContent;
   }
-
+    
   // Global variable to store the original exercises data
   let originalExercisesData = [];
 
