@@ -214,6 +214,22 @@
           </div>
         </div>
       </div>
+        <!-- Modal -->
+      <div class="modal fade" id="Savenotice" tabindex="-1" aria-labelledby="SavenoticeModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+          <div class="modal-content bg-dark ">
+            <div class="modal-header">
+              
+            </div>
+            <div class="modal-body">
+              <!-- API data will be dynamically inserted here -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-custom text" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
       
       
       <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
