@@ -107,7 +107,7 @@ $(document).ready(function() {
     'X-RapidAPI-Key': '3ec250bf1cmsh6ba74139d7fb301p1de1eejsn7dbf4db26f0c',
     'X-RapidAPI-Host': 'musclewiki.p.rapidapi.com'
   };
-  let exercises; // Declare exercises at a higher scope
+  let exercises= []; // Declare exercises at a higher scope
   let currentPage = 1;
   const itemsPerPage = 3; // Change this to alter the number of items per page
    
@@ -134,7 +134,6 @@ async function loadSavedExercises() {
   const exerciseIds = await response.json();
   
   // Fetch each exercise from the API
-  const exercises = [];
   for (const id of exerciseIds) {
     const response = await fetch(`${API_URL}/${id}`, {
       method: 'GET',
@@ -144,10 +143,12 @@ async function loadSavedExercises() {
     exercises.push(exercise);
       displayExercises(exercises.slice(0, itemsPerPage)); // Call displayExercises directly from here
   createPaginationButtons(Math.ceil(exercises.length / itemsPerPage));
+ 
   }
 
   // Now `exercises` contains all the exercises saved by the user
   displayExercises(exercises); // Display them
+  goToPage(1);
 }
 
 loadSavedExercises()
@@ -205,7 +206,7 @@ function displayExercises(data) {
     exerciseCard.classList.add('mb-4');
 
     exerciseCard.innerHTML = `
-      <div class="card bg-dark text-white col-12">
+      <div class="card bg-dark text-white col-12" id="exerciseCard_${exercise.id}">
         <div class="card-body text-capitalize">
           <video autoplay loop muted class="card-img-top">
             <source src="${exercise.videoURL}"  type="video/mp4">
@@ -214,15 +215,52 @@ function displayExercises(data) {
           <h5 class="card-title">${exercise.exercise_name}</h5>
           <p class="card-text">Click below to view exercise details.</p>
           <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#exerciseModal" onclick="displayModalData('${exercise.id}')">Details</button>
-          <button type="button" class="btn btn-danger" onclick="displayModalSave('${exercise.id}')">Delete</button>
+          <button type="button" class="btn btn-danger" onclick="deleteExercise('${exercise.id}')">Delete</button>
         </div>
       </div>
     `;
 
     exerciseCardsContainer.appendChild(exerciseCard);
   });
+
 }
 
+function deleteExercise(id) {
+  // Functionality for deleting the exercise
+  $.ajax({
+    url: './deleteEx.php', // Replace this with the actual URL of your PHP delete script
+    type: 'POST',
+    data: { id: id },
+    success: function (response) {
+      // Handle the response from the PHP script here
+      var modalTitle = 'Delete Notice'; // Set the title of the modal
+      var modalDescription = 'Exercise deleted successfully!'; // Set the description
+
+      // Update the modal title and description
+      $('#Deletenotice .modal-title').text(modalTitle);
+      $('#Deletenotice .modal-body').html(modalDescription + '<br>' + response);
+
+      // Show the modal
+      $('#Deletenotice').modal('show');
+
+      // Automatically hide the modal after 10 seconds
+      setTimeout(function () {
+        $('#Deletenotice').modal('hide');
+      }, 10000);
+
+      // Fade out and remove the exercise card from the UI
+      $('#exerciseCard_' + id).parent().fadeOut(400, function () {
+        $(this).remove();
+
+        // Remove the exercise from the exercises array
+        exercises = exercises.filter(exercise => exercise.id !== Number(id));
+      });
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.error('An error occurred: ' + textStatus);
+    }
+  });
+}
 
 
 
