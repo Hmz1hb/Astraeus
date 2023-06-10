@@ -16,7 +16,7 @@ headers: headers
 const data = await response.json();
 
 // Get 11 random exercises
-const randomExercises = getRandomElements(data, 8);
+const randomExercises = getRandomElements(data, 4);
 
 // Modify the ID property to match the actual ID returned from the API
 const exercisesWithCorrectId = randomExercises.map((exercise, index) => ({
@@ -158,7 +158,7 @@ modalBody.innerHTML = modalContent;
 function displayModalSave(id) {
   // Functionality for saving the exercise
   $.ajax({
-    url: './nada.php', // Replace this with the actual URL of your PHP page
+    url: './saveEx.php', // Replace this with the actual URL of your PHP page
     type: 'POST',
     data: { id: id },
     success: function (response) {

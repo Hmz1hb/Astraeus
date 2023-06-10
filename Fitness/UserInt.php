@@ -121,15 +121,10 @@
               </a>
             </div>
           </div>
-          <div class="container mt-5">
+
             <div id="exerciseList" class="row"></div>
-          </div>
 
-          <script>
-           
-          </script>
 
-          <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
           <div class="modal fade" id="exerciseModal" tabindex="-1" aria-labelledby="exerciseModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
               <div class="modal-content bg-dark">
