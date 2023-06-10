@@ -44,51 +44,138 @@ $(document).ready(function() {
 });
 
   
-  
-    $(document).ready(function() {
-      var originalData = {};
-  
-      $(document).on('click', '#editButton', function() {
-        var fields = ['fullName', 'gender', 'weight', 'height', 'age', 'Waist', 'Neck', 'Hip'];
-        fields.forEach(function(field) {
-          var element = $('#' + field);
-          var input = $('<input>').val(element.text()).attr('id', field + 'Input').addClass('form-control bg-dark text-light custom-inp');
-          originalData[field] = element.text();
-          element.replaceWith(input);
-        });
-        $(this).text('Save').attr('id', 'saveButton');
-        $('<button>').text('Cancel').attr('id', 'cancelButton').addClass('btn btn-custom').insertAfter($(this));
+$(document).ready(function() {
+  var originalData = {};
+
+  $(document).on('click', '#editButton', function() {
+    var fields = ['fullName', 'gender', 'weight', 'height', 'age', 'Waist', 'Neck', 'Hip'];
+    fields.forEach(function(field) {
+      var element = $('#' + field);
+      var input;
+      if (['height', 'age', 'Waist', 'Neck', 'Hip'].includes(field)) {
+        var minMax = {};
+        switch(field) {
+          case 'height':
+            minMax = {min: 130, max: 230};
+            break;
+          case 'age':
+            minMax = {min: 0, max: 80};
+            break;
+          case 'Waist':
+          case 'Hip':
+            minMax = {min: 40, max: 130};
+            break;
+          case 'Neck':
+            minMax = {min: 20, max: 60};
+            break;
+        }
+        input = $('<input>', {min: minMax.min, max: minMax.max, type: 'number'}).val(element.text()).attr('id', field + 'Input').addClass('form-control bg-dark text-light custom-inp');
+      } else {
+        input = $('<input>').val(element.text()).attr('id', field + 'Input').addClass('form-control bg-dark text-light custom-inp');
+      }
+
+      // Create an error message container
+      var errorMsg = $('<p>').attr('id', 'error-' + field).addClass('error-msg').hide();
+
+      originalData[field] = element.text();
+      element.replaceWith(input);
+      input.after(errorMsg);  // Insert the error message container after the input
+
+      // Bind keyup event for live validation
+      input.keyup(function() {
+        validateInput(field, input);
       });
-  
-      $(document).on('click', '#saveButton', function() {
-        var fields = ['fullName', 'gender', 'weight', 'height', 'age', 'Waist', 'Neck', 'Hip'];
-        var data = {};
+    });
+
+    $(this).text('Save').attr('id', 'saveButton');
+    $('<button>').text('Cancel').attr('id', 'cancelButton').addClass('btn btn-custom').insertAfter($(this));
+  });
+
+  $(document).on('click', '#saveButton', function() {
+    var fields = ['fullName', 'gender', 'weight', 'height', 'age', 'Waist', 'Neck', 'Hip'];
+    var data = {};
+    var valid = true;
+
+    fields.forEach(function(field) {
+      var input = $('#' + field + 'Input');
+      if (!validateInput(field, input)) {
+        valid = false;
+      }
+      data[field] = input.val();
+    });
+
+    if (!valid) {
+      return false;
+    }
+
+    $.ajax({
+      url: './updateUser.php',
+      type: 'POST',
+      data: data,
+      success: function(response) {
         fields.forEach(function(field) {
-          data[field] = $('#' + field + 'Input').val();
+          var input = $('#' + field + 'Input');
+          var p = $('<p>').text(input.val()).attr('id', field).addClass('mb-0');
+          input.replaceWith(p);
         });
-        $.ajax({
-          url: './updateUser.php',
-          type: 'POST',
-          data: data,
-          success: function(response) {
-            fields.forEach(function(field) {
-              var input = $('#' + field + 'Input');
-              var p = $('<p>').text(input.val()).attr('id', field).addClass('mb-0');
-              input.replaceWith(p);
-            });
-            
-            $('#resultModal .modal-body').text(response.message);
-            $('#resultModal').modal('show');
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-  
-            $('#resultModal .modal-body').text('An error occurred: ' + textStatus);
-          $('#resultModal').modal('show');
-          }
-        });
-        $('#cancelButton').remove();
-        $(this).text('Edit').attr('id', 'editButton');
-      });
+        
+        $('#resultModal .modal-body').text(response.message);
+        $('#resultModal').modal('show');
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        $('#resultModal .modal-body').text('An error occurred: ' + textStatus);
+        $('#resultModal').modal('show');
+      }
+    });
+    $('#cancelButton').remove();
+    $(this).text('Edit').attr('id', 'editButton');
+  });
+
+  function validateInput(field, input) {
+    var value = parseFloat(input.val());
+    var valid = true;
+    var errorMsg = "";
+
+    switch (field) {
+      case 'height':
+        if (value < 130 || value > 230) {
+          valid = false;
+          errorMsg = "Height must be between 130 cm to 230 cm.";
+        }
+        break;
+      case 'age':
+        if (value < 0 || value > 80) {
+          valid = false;
+          errorMsg = "Age must be between 0 to 80.";
+        }
+        break;
+      case 'Neck':
+        if (value < 20 || value > 60) {
+          valid = false;
+          errorMsg = "Neck must be between 20 cm to 60 cm.";
+        }
+        break;
+      case 'Waist':
+      case 'Hip':
+        if (value < 40 || value > 130) {
+          valid = false;
+          errorMsg = `${field} must be between 40 cm to 130 cm.`;
+        }
+        break;
+    }
+
+    if (!valid) {
+      input.css('border-color', 'red');
+      $('#error-' + field).text(errorMsg).show();
+    } else {
+      input.css('border-color', '');
+      $('#error-' + field).text('').hide();
+    }
+
+    return valid;
+  }
+
+
   
       $(document).on('click', '#cancelButton', function() {
         var fields = ['fullName', 'gender', 'weight', 'height', 'age', 'Waist', 'Neck', 'Hip'];

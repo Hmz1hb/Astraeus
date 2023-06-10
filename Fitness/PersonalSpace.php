@@ -31,11 +31,14 @@ $userId = $_SESSION['user_id'];
     
     
 
-    <link href="./dashboard.css" rel="stylesheet">
+    <link href="./dashboard.css?v=<?php echo time(); ?>" rel="stylesheet">
 
     <style>
 
-  
+.error-msg  {
+    color: red;
+    font-size: 12px;
+  }
         
       </style>
   </head>
