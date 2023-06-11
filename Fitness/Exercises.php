@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+
+if (!isset($_SESSION['user_id'])) {
+  // Redirect to login page
+  header('Location: ./login.php');
+  exit(); // Important: stop executing the rest of the script
+}
+
+$userId = $_SESSION['user_id']; 
+
+
+?>
 <!doctype html>
 <html lang="en">
   <head>

@@ -1,5 +1,15 @@
 <?php
-session_start();
+
+ session_start();
+ 
+ 
+ if (!isset($_SESSION['user_id'])) {
+   // Redirect to login page
+   header('Location: ./login.php');
+   exit(); // Important: stop executing the rest of the script
+ }
+ 
+
 
 // Make sure to sanitize the input to prevent SQL injection
 $exerciseId = intval($_POST['id']);

@@ -1,6 +1,14 @@
 <?php
 session_start();
 
+
+if (!isset($_SESSION['user_id'])) {
+  // Redirect to login page
+  header('Location: ./login.php');
+  exit(); // Important: stop executing the rest of the script
+}
+
+
 header("Header always set Access-Control-Allow-Origin *");
 
 $db = new PDO('mysql:host=localhost;dbname=gymdata;charset=utf8', 'root', '');

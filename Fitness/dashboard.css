@@ -297,13 +297,6 @@ body {
   #btn-male:not(.active).dark-mode {
     color: var(--bs-gray-700) !important;
   }
-  #btn-male:not(.active):hover {
-    color: #384B9D !important;
-    animation: rotate-btn 1s ease-in-out infinite;
-  }
-  #btn-male:not(.active):hover svg {
-    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.541));
-  }
   
   #btn-female {
     font-size: 40px;
@@ -318,31 +311,14 @@ body {
   #btn-female:not(.active).dark-mode {
     color: var(--bs-gray-700) !important;
   }
-  #btn-female:not(.active):hover {
-    color: #8F0B94 !important;
-    animation: rotate-btn 1s ease-in-out infinite;
-  }
-  #btn-female:not(.active):hover svg {
-    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.541));
-  }
-  
-  @keyframes rotate-btn {
-    0% {
-      transform: rotate(10deg);
-    }
-    50% {
-      transform: rotate(-10deg);
-    }
-    100% {
-      transform: rotate(10deg);
-    }
-  }
+
   #btn-calc {
-    font-size: 22px;
+    font-size: 30px;
     font-weight: 600;
-    background-image: linear-gradient(to right, #384B9D, #8F0B94);
+    background-image: linear-gradient(to right, #f9ef23, #f9ef23);
     background-repeat: no-repeat;
     background-attachment: fixed;
+
   }
   
   .form-label {
@@ -358,25 +334,6 @@ body {
     top: 60px;
   }
   
-  footer a {
-    font-size: 28px;
-    color: white;
-  }
-  footer a:hover {
-    background-color: white;
-    color: black;
-  }
-  
-  .calc-title.dark-mode h1, .calc-title.dark-mode .h1 {
-    color: white !important;
-  }
-  .calc-title.dark-mode hr {
-    border-top-color: #f1f1f1;
-  }
-  .calc-title.dark-mode p {
-    color: var(--bs-gray-600) !important;
-  }
-  
-  
+ 
   
   

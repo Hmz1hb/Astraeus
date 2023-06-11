@@ -1,5 +1,13 @@
 <?php
-session_start();
+
+ session_start();
+ 
+ 
+ if (!isset($_SESSION['user_id'])) {
+   // Redirect to login page
+   header('Location: ./login.php');
+   exit(); // Important: stop executing the rest of the script
+ }
 
 // Connect to your database. Replace the following with your actual database connection details
 $db = new PDO('mysql:host=localhost;dbname=gymdata;charset=utf8', 'root', '');
@@ -55,7 +63,7 @@ $gender = $userData['Gender'] == 0 ? 'male' : 'female';
     </div>
     <div class="navbar-nav">
       <div class="nav-item text-nowrap">
-        <a class="nav-link px-3" href="#">Sign out</a>
+        <a class="nav-link px-3" href="./signout.php">Sign out</a>
       </div>
     </div>
   </header>
@@ -163,10 +171,10 @@ $gender = $userData['Gender'] == 0 ? 'male' : 'female';
                                         <img src="./img/male.png" alt="male" id="body" class="mb-2">
                                     </div>
                                     <div class="mt-2 d-flex justify-content-between px-2">
-                                        <button class="bg-transparent border-0 text-white active" data-gender="<?php echo $gender; ?>" id="btn-male">
+                                        <button class="bg-transparent border-0 text-muted active" data-gender="<?php echo $gender; ?>" id="btn-male">
                                             <i class="fa-solid fa-mars"></i>
                                         </button>
-                                        <button class="bg-transparent border-0 text-white" data-gender="<?php echo $gender; ?>" id="btn-female">
+                                        <button class="bg-transparent border-0 text-muted" data-gender="<?php echo $gender; ?>" id="btn-female">
                                             <i class="fa-solid fa-venus"></i>
                                         </button>
                                     </div>
@@ -244,7 +252,7 @@ $gender = $userData['Gender'] == 0 ? 'male' : 'female';
                                             </div>
                                         </div>
                                     </form>
-                                    <button id="btn-calc" class="btn w-50 py-2 rounded-5 text-white mt-auto mx-auto shadow">
+                                    <button id="btn-calc" class="btn w-50 py-2 rounded-5 text-dark mt-auto mx-auto shadow">
                                         Calculate
                                     </button>
                                 </div>

@@ -1,9 +1,11 @@
  <?php
 session_start();
 
+
 if (!isset($_SESSION['user_id'])) {
-    // Redirect to login page or show error
-    die('Please login to continue');
+  // Redirect to login page
+  header('Location: ./login.php');
+  exit(); // Important: stop executing the rest of the script
 }
 
 $userId = $_SESSION['user_id']; 

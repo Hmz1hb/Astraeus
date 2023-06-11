@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+
+if (!isset($_SESSION['user_id'])) {
+  // Redirect to login page
+  header('Location: ./login.php');
+  exit(); // Important: stop executing the rest of the script
+}
+
+$userId = $_SESSION['user_id']; 
+
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -19,7 +33,7 @@
       <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
       <div class="navbar-nav">
         <div class="nav-item text-nowrap">
-          <a class="nav-link px-3" href="#">Sign out</a>
+          <a class="nav-link px-3" href="./signout.php">Sign out</a>
         </div>
       </div>
     </header>
