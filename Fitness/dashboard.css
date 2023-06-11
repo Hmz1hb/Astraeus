@@ -251,3 +251,132 @@ body {
   }
 
 
+
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  /* .body {
+    background-image: linear-gradient(to bottom, #384B9D, #8F0B94);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  } */
+  
+  #darkModeToggler {
+    font-size: 25px;
+  }
+  
+  
+  #body {
+    height: 700px;
+  }
+  
+  #img-toggler {
+    z-index: 2;
+    border-top-color: var(--bs-gray-400);
+    height: 0px;
+    transition: 0.3s ease-out;
+  }
+  #img-toggler.deployed {
+    transition: 0.3s ease-out;
+    height: 358px;
+  }
+  
+  #btn-male {
+    font-size: 40px;
+  }
+  #btn-male.active {
+    color: #384B9D !important;
+    pointer-events: none;
+  }
+  #btn-male.active svg {
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.541));
+  }
+  #btn-male:not(.active).dark-mode {
+    color: var(--bs-gray-700) !important;
+  }
+  #btn-male:not(.active):hover {
+    color: #384B9D !important;
+    animation: rotate-btn 1s ease-in-out infinite;
+  }
+  #btn-male:not(.active):hover svg {
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.541));
+  }
+  
+  #btn-female {
+    font-size: 40px;
+  }
+  #btn-female.active {
+    color: #8F0B94 !important;
+    pointer-events: none;
+  }
+  #btn-female.active svg {
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.541));
+  }
+  #btn-female:not(.active).dark-mode {
+    color: var(--bs-gray-700) !important;
+  }
+  #btn-female:not(.active):hover {
+    color: #8F0B94 !important;
+    animation: rotate-btn 1s ease-in-out infinite;
+  }
+  #btn-female:not(.active):hover svg {
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.541));
+  }
+  
+  @keyframes rotate-btn {
+    0% {
+      transform: rotate(10deg);
+    }
+    50% {
+      transform: rotate(-10deg);
+    }
+    100% {
+      transform: rotate(10deg);
+    }
+  }
+  #btn-calc {
+    font-size: 22px;
+    font-weight: 600;
+    background-image: linear-gradient(to right, #384B9D, #8F0B94);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  
+  .form-label {
+    font-family: Fira Mono, monospace;
+    font-size: 15px;
+  }
+  
+  #weight-indicator {
+    background-color: #384B9D;
+    height: 1.5em;
+    width: 4em;
+    left: -4%;
+    top: 60px;
+  }
+  
+  footer a {
+    font-size: 28px;
+    color: white;
+  }
+  footer a:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  .calc-title.dark-mode h1, .calc-title.dark-mode .h1 {
+    color: white !important;
+  }
+  .calc-title.dark-mode hr {
+    border-top-color: #f1f1f1;
+  }
+  .calc-title.dark-mode p {
+    color: var(--bs-gray-600) !important;
+  }
+  
+  
+  
+  
