@@ -15,6 +15,8 @@ $currentDate = new DateTime();
 $ageInterval = $currentDate->diff($birthDate);
 $age = $ageInterval->y;
 
+$gender = $userData['Gender'] == 0 ? 'male' : 'female';
+
 
 
 ?>
@@ -274,88 +276,26 @@ footer a:hover {
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Body Fat Calculator</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group me-2">
-              <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                Categories
-              </button>
-              <ul class="dropdown-menu ">
-                <li><a class="dropdown-item" href="#" onclick="filterByCategory('Barbell')">Barbell</a></li>
-              </ul>
-            </div>
-            <div class="btn-group me-2">
-              <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                Difficulties
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#" onclick="filterByDifficulty('Beginner')">Beginner</a></li>
-
-              </ul>
-            </div>
-            <div class="btn-group me-2">
-              <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                Forces
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#" onclick="filterByForce('Pull')">Pull</a></li>
-              </ul>
-            </div>
-            <div class="btn-group me-2">
-              <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                Muscles
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#" onclick="filterByMuscle('Biceps')">Biceps</a></li>
-              </ul>
-            </div>
-          </div>
       </div>
  
       <body>
         <div class="container-fluid d-flex flex-column p-0 min-vh-100 p-3 body">
-            <div class="row mx-0 mb-3">
-                <nav class="navbar bg-dark navbar-expand-sm py-2 px-4">
-                    <div class="container-fluid px-0 d-flex flex-column flex-xs-row align-items-stretch align-items-xs-center">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse mt-2 mt-sm-0" id="main-navbar">
-                            <ul class="navbar-nav ms-auto border rounded-pill overflow-hidden">
-                                <li class="nav-item border-end text-center">
-                                    <a class="nav-link active" href="#" aria-current="page">BFP</a>
-                                </li>
-                                <li class="nav-item text-center">
-                                    <a class="nav-link disabled" href="#">Ideal Weight</a>
-                                </li>
-                                <li class="nav-item border-start text-center">
-                                    <a class="nav-link disabled" href="#">DCR</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>   
-            </div>
             <div class="row mx-0 mb-3 bg-dark flex-grow-1 rounded-5 h-100" id="calc-container">
                 <div class="container-fluid mx-0 my-auto py-3">
                     <div class="container-lg px-0">
                         <div class="row d-flex justify-content-center mx-0">
-                            <div class="text-center d-block d-xl-none mb-4 w-75 calc-title">
-                                <h1 class="m-0">BFP Calculator</h1>
-                                <hr class="w-100 my-1"/>
-                                <p class="text-muted">Body Fat Percentage</p>
-                            </div>
                             <div class="d-xl-none col-12"></div>
                             <div class="col-auto d-flex align-items-stretch">
                                 <div class="d-flex flex-column">
                                     <div class="position-relative d-flex flex-grow-1">
-                                        <div id="img-toggler" class="w-100 border-top border-3 position-absolute bg-white align-self-end"></div>
+                                        <div id="img-toggler" class="w-100 border-top border-3 position-absolute bg-dark align-self-end"></div>
                                         <img src="./img/male.png" alt="male" id="body" class="mb-2">
                                     </div>
                                     <div class="mt-2 d-flex justify-content-between px-2">
-                                        <button class="bg-transparent border-0 text-muted active" id="btn-male">
+                                        <button class="bg-transparent border-0 text-white active" data-gender="<?php echo $gender; ?>" id="btn-male">
                                             <i class="fa-solid fa-mars"></i>
                                         </button>
-                                        <button class="bg-transparent border-0 text-muted" id="btn-female">
+                                        <button class="bg-transparent border-0 text-white" data-gender="<?php echo $gender; ?>" id="btn-female">
                                             <i class="fa-solid fa-venus"></i>
                                         </button>
                                     </div>
@@ -374,7 +314,7 @@ footer a:hover {
                                                 <div class="w-75 mx-auto">
                                                     <label class="form-label" for="neck-input">Neck</label>
                                                     <div class="input-group flex-nowrap shadow-sm">
-                                                        <input class="form-control text-center" type="number"   id="neck-input" aria-describedby="neck-cm" min="20" max="80" value="<?php echo $userData['neck']; ?>">
+                                                        <input class="form-control text-center" type="number"   id="neck-input" aria-describedby="neck-cm" min="20" max="80" value="<?php echo $userData['neck']; ?>"disabled>
                                                         <span class="input-group-text" id="neck-cm">cm</span>
                                                     </div>
                                                 </div>
@@ -383,7 +323,7 @@ footer a:hover {
                                                 <div class="w-75 mx-auto">
                                                     <label class="form-label" for="waist-input">Waist</label>
                                                     <div class="input-group flex-nowrap shadow-sm">
-                                                        <input class="form-control text-center" type="number" id="waist-input" aria-describedby="waist-cm" min="40" max="130"value="<?php echo $userData['waist']; ?>">
+                                                        <input class="form-control text-center" type="number" id="waist-input" aria-describedby="waist-cm" min="40" max="130"value="<?php echo $userData['waist']; ?>"disabled>
                                                         <span class="input-group-text" id="waist-cm">cm</span>
                                                     </div>
                                                 </div>
@@ -392,7 +332,7 @@ footer a:hover {
                                                 <div class="w-75 mx-auto">
                                                     <label class="form-label" for="hip-input">Hip</label>
                                                     <div class="input-group flex-nowrap shadow-sm">
-                                                        <input class="form-control text-center" type="number" id="hip-input" aria-describedby="hip-cm" min="40" max="130"value="<?php echo $userData['hip']; ?>">
+                                                        <input class="form-control text-center" type="number" id="hip-input" aria-describedby="hip-cm" min="40" max="130"value="<?php echo $userData['hip']; ?>"disabled>
                                                         <span class="input-group-text" id="hip-cm">cm</span>
                                                     </div>
                                                 </div>
@@ -401,7 +341,7 @@ footer a:hover {
                                                 <div class="w-75 mx-auto">
                                                     <label class="form-label" for="age-input">Age</label>
                                                     <div class="input-group flex-nowrap shadow-sm">
-                                                        <input class="form-control text-center" type="number" id="age-input" aria-describedby="age-years" min="1" max="80"value="<?php echo $age; ?>">
+                                                        <input class="form-control text-center" type="number" id="age-input" aria-describedby="age-years" min="1" max="80"value="<?php echo $age; ?>"disabled>
                                                         <span class="input-group-text" id="age-years">years</span>
                                                     </div>
                                                 </div>
@@ -410,7 +350,7 @@ footer a:hover {
                                                 <div class="w-75 mx-auto">
                                                     <label class="form-label" for="height-input">Height</label>
                                                     <div class="input-group flex-nowrap shadow-sm">
-                                                        <input class="form-control text-center" type="number" id="height-input" aria-describedby="height-cm" min="130" max="230"value="<?php echo $userData['Height']; ?>">
+                                                        <input class="form-control text-center" type="number" id="height-input" aria-describedby="height-cm" min="130" max="230"value="<?php echo $userData['Height']; ?>" disabled>
                                                         <span class="input-group-text" id="height-cm">cm</span>
                                                     </div>
                                                 </div>
@@ -419,7 +359,7 @@ footer a:hover {
                                                 <div class="w-75 mx-auto">
                                                     <label class="form-label" for="weight-input">Weight</label>
                                                     <div class="input-group flex-nowrap shadow-sm">
-                                                        <input class="form-control text-center" type="number" id="weight-input" aria-describedby="weight-cm" min="40" max="160"value="<?php echo $userData['Weight']; ?>">
+                                                        <input class="form-control text-center" type="number" id="weight-input" aria-describedby="weight-cm" min="40" max="160"value="<?php echo $userData['Weight']; ?>" disabled>
                                                         <span class="input-group-text" id="weight-kg">kg</span>
                                                     </div>
                                                 </div>
@@ -427,7 +367,7 @@ footer a:hover {
                                             <div class="col-12 d-flex flex-column justify-content-center mb-5 d-none d-md-block">
                                                 <div class="text-center position-relative w-100">
                                                     <label class="form-label" for="weight-range-input">Weight</label><br/>
-                                                    <input class="form-range" type="range" id="weight-range-input" min="40" max="160" value="<?php echo $userData['Weight']; ?>">
+                                                    <input class="form-range" type="range" id="weight-range-input" min="40" max="160" value="<?php echo $userData['Weight']; ?>"disabled>
                                                     <span id="weight-indicator" class="position-absolute text-white rounded-pill"></span>
                                                 </div>
                                             </div>
@@ -461,179 +401,7 @@ footer a:hover {
     </main>
   </div>
 </div>
-<script>
 
-const apiKey = '764b7dd13bmsh5052cb02cc32d39p133d57jsne66582f5752e'
-  // Weight slider
-
-const weightIndicator = document.getElementById('weight-indicator')
-const weightSlider = document.getElementById('weight-range-input')
-
-weightIndicator.style.left = (weightSlider.value-45)*0.808333+'%'
-weightIndicator.textContent = weightSlider.value + 'kg'
-
-weightSlider.oninput = (()=>{
-    weightIndicator.style.left = (weightSlider.value-45)*0.808333+'%'
-    weightIndicator.textContent = weightSlider.value + 'kg'
-})
-
-//gender toggler
-
-let gender = 'male'
-
-const maleBtn = document.getElementById('btn-male')
-const femaleBtn = document.getElementById('btn-female')
-const body = document.getElementById('body')
-const toggler = document.getElementById('img-toggler')
-
-maleBtn.onclick = ()=>{
-    maleBtn.classList.toggle('active')
-    femaleBtn.classList.toggle('active')
-    
-    toggler.classList.toggle('deployed')
-    setTimeout(() => {
-        body.src = './img/male.png'
-        gender = 'male'
-        toggler.classList.toggle('deployed')
-    }, 300)
-       
-}
-
-femaleBtn.onclick = ()=>{
-    femaleBtn.classList.toggle('active')
-    maleBtn.classList.toggle('active')
-
-    toggler.classList.toggle('deployed')
-    setTimeout(() => {
-        body.src = './img/female.png'
-        gender = 'female'
-        toggler.classList.toggle('deployed')
-    }, 300)
-    
-}
-
-//get data
-
-const btnCalc = document.getElementById('btn-calc')
-
-btnCalc.onclick = ()=>{
-    
-    let age = document.getElementById('age-input').value
-    if (age === ''){
-        age = -1
-    }
-    else if (age == 0){
-        age = 1
-    }
-    
-    let weight = 0
-    if (window.innerWidth > 768){
-        weight = document.getElementById('weight-range-input').value
-    } 
-    else {
-        weight = document.getElementById('weight-input').value
-    }
-
-    let height = document.getElementById('height-input').value
-    let neck = document.getElementById('neck-input').value
-    let waist = document.getElementById('waist-input').value
-    let hip = document.getElementById('hip-input').value
-
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': apiKey,
-		    'X-RapidAPI-Host': 'fitness-calculator.p.rapidapi.com'
-        }
-    }
-
-    fetch(`https://fitness-calculator.p.rapidapi.com/bodyfat?age=${age}&gender=${gender}&weight=${weight}&height=${height}&neck=${neck}&waist=${waist}&hip=${hip}`, options)
-
-        .then(response => response.json())
-        .then(response => {
-            if(response.status_code === 422){
-                showErrors(response.errors)
-            }
-            if(response.status_code === 200){
-                showResults(response.data)
-            }
-        })
-}
-
-//results
-
-const resultsModal = new bootstrap.Modal(document.getElementById('results-modal'))
-const resultsTitle = document.querySelector('.modal-title')
-const resultsBody = document.querySelector('.modal-body')
-
-function showErrors(errors){
-    
-    resultsTitle.textContent = 'Wrong Values'
-    resultsBody.innerHTML = '<ul></ul>'
-    
-    errors.forEach(error => {
-        let errorElement = document.createElement('li')
-        let errorContent = error[0].toUpperCase() + error.slice(1)
-        errorElement.textContent = errorContent
-        document.querySelector('.modal-body ul').appendChild(errorElement)
-    })
-
-    resultsModal.toggle()
-}
-
-function showWrongMeasurements() {
-    resultsTitle.textContent = 'Wrong Measurements'
-    
-    resultsBody.textContent = 'The values you provide are not proportionally correct'
-    resultsModal.toggle()
-
-}
-
-function showResults(data){
-
-    for (let x in data){
-        if (isFinite(data[x]) && data[x] < 1){
-            showWrongMeasurements()
-            return
-        }
-    }
-    
-    resultsTitle.textContent = 'Results'
-    resultsBody.innerHTML = '<ul></ul>'
-    let category = ''
-
-    switch(data['Body Fat Category']){
-        case 'Obese':
-            category = "danger"
-            break
-        case 'Average':
-            category = "warning"
-            break
-        case 'Fitness':
-            category = "success"
-            break
-        case 'Athletes':
-            category = "primary"
-            break
-        case 'Essential Fat':
-            category = "info"
-            break
-    }
-
-    let html = `
-        
-        <li>Body Fat: <span class="text-${category}">${data['Body Fat (BMI method)']}</span></li>
-        <li>Body Fat Category: <span class="text-${category}">${data['Body Fat Category']}</span></li>
-        <li>Body Fat Mass: <span class="text-${category}">${data['Body Fat Mass']}</span></li>
-        <li>Lean Body Mass: <span class="text-${category}">${data['Lean Body Mass']}</span></li>
-
-    `
-
-    document.querySelector('.modal-body ul').innerHTML = html
-    
-    resultsModal.toggle()
-}
-  </script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
@@ -642,6 +410,7 @@ function showResults(data){
 
 
        <script src="./dashboard.js"></script>
+       <script src="./BFP.js"></script>
         
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
