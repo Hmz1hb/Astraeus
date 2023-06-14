@@ -7,51 +7,56 @@ $user = 'root';
 
 $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user);
 try {
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
- 
-    if(isset($_POST["register"])){
-        if(isset($_POST["terms"])) {
-            $name = $_POST['name'];
-            // $lastname = $_POST['lastname'];
-            $email = $_POST['email'];
-            $phone = $_POST['phone'];
-            $repeat_password = $_POST['repeat_password'];
-            if ($password !== $repeat_password) {
-              $error = 'The passwords do not match.';
-          } else {
-            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            if (!preg_match("/^((\+|00)212|0)[567]\d{8}$/", $phone)) {
-              $error = 'Numéro de téléphone invalide. Veuillez saisir un numéro de téléphone marocain valide.';
-            } else {
-            $sql = "SELECT * FROM User WHERE Email = ? OR Phone = ?";
-            $stmt= $pdo->prepare($sql);
-            $stmt->execute([$email, $phone]);
-            $user = $stmt->fetch();
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-            if($user) {
-              $error =  "A user with this email or phone number already exists.";
-            } else {
-                $sql = "INSERT INTO User (Name, Email, Phone, Password) VALUES (?, ?, ?, ?)";
-                $stmt= $pdo->prepare($sql);
-                $stmt->execute([$name, $email, $phone, $password]);
-                $lastInsertId = $pdo->lastInsertId();
+        if(isset($_POST["register"])){
+            if(isset($_POST["terms"])) {
+                $name = $_POST['name'];
+                $email = $_POST['email'];
+                $phone = $_POST['phone'];
+                $password = $_POST['password'];
+                $repeat_password = $_POST['repeat_password'];
+                $birthdate = new DateTime($_POST['birthdate']);
+                $currentDate = new DateTime();
+                $diff = $birthdate->diff($currentDate);
 
-                // Start a new session and save the user's ID into the session.
-                session_start();
-                $_SESSION['user_id'] = $lastInsertId;
-               
-              }
-            }
-        } 
-      } 
+                if ($diff->y < 16) {
+                    $error = 'You must be at least 16 years old to register.';
+                } elseif ($password !== $repeat_password) {
+                    $error = 'The passwords do not match.';
+                } elseif (!preg_match("/^((\+|00)212|0)[567]\d{8}$/", $phone)) {
+                    $error = 'Numéro de téléphone invalide. Veuillez saisir un numéro de téléphone marocain valide.';
+                } else {
+                    $sql = "SELECT * FROM User WHERE Email = ? OR Phone = ?";
+                    $stmt= $pdo->prepare($sql);
+                    $stmt->execute([$email, $phone]);
+                    $user = $stmt->fetch();
+
+                    if($user) {
+                        $error =  "A user with this email or phone number already exists.";
+                    } else {
+                        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                        $sql = "INSERT INTO User (Name, Email, Phone, Password, Age) VALUES (?, ?, ?, ?, ?)";
+                        $stmt= $pdo->prepare($sql);
+                        $stmt->execute([$name, $email, $phone, $password, $birthdate->format('Y-m-d')]);
+                        $lastInsertId = $pdo->lastInsertId();
+
+                        // Start a new session and save the user's ID into the session.
+                        session_start();
+                        $_SESSION['user_id'] = $lastInsertId;
+                        header("Location: ./Userint.php");
+
+                    }
+                }
+            } 
+        }
     }
- 
-} 
 } catch (PDOException $e) {
   $error = 'Connection failed: ' . $e->getMessage();
 }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -131,35 +136,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <form action="" method="post">
   
                   <div class="form-outline  mb-4">
-                    <input type="text" id="form3Example1cg" name="name" class="form-control form-control-lg" />
+                    <input type="text" id="form3Example1cg" name="name" class="form-control form-control-lg"required />
                     <label class="form-label" for="form3Example1cg">Full Name</label>
                   </div>
-                  <!-- <div class="form-outline  mb-4">
-                    <input type="text" id="form3Example1cg" name="lastname" class="form-control form-control-lg" />
-                    <label class="form-label" for="form3Example1cg">Last Name</label>
-                  </div> -->
-  
+                  <div class="form-outline  mb-4">
+                    <input type="date" id="form3Example1cg" name="birthdate" class="form-control form-control-lg" required/>
+                    <label class="form-label" for="form3Example1cg">Birth Date</label>
+                  </div>
                   <div class="form-outline mb-4">
-                    <input type="email" id="form3Example3cg" name="email" class="form-control form-control-lg" />
+                    <input type="email" id="form3Example3cg" name="email" class="form-control form-control-lg" required/>
                     <label class="form-label" for="form3Example3cg">Your Email</label>
                   </div>
                   <div class="form-outline mb-4">
-                    <input type="text" id="phone" name="phone" class="form-control form-control-lg" />
+                    <input type="tel" id="phone" name="phone" class="form-control form-control-lg" required/>
                     <label class="form-label" for="form3Example3cg">Phone</label>
                   </div>
                 
                   <div class="form-outline mb-4">
-                    <input type="password" id="form3Example4cg" name="password" class="form-control form-control-lg" />
+                    <input type="password" id="form3Example4cg" name="password" class="form-control form-control-lg" required/>
                     <label class="form-label" for="form3Example4cg">Password</label>
+                   
                   </div>
+                  <div id="passwordError" class="mb-2 mt-0"  style=" display: none; color: red; font-size: 12px;">Password must be at least 8 characters long, and include a mix of letters, numbers, and special characters.</div>
   
                   <div class="form-outline mb-4">
-                    <input type="password" id="form3Example4cdg" name="repeat_password" class="form-control form-control-lg" />
+                    <input type="password" id="form3Example4cdg" name="repeat_password" class="form-control form-control-lg" required />
                     <label class="form-label" for="form3Example4cdg">Repeat your password</label>
                   </div>
-  
                   <div class="form-check d-flex justify-content-center mb-5">
-                    <input class="form-check-input me-2" type="checkbox" value="" name="terms" id="form2Example3cg" />
+                    <input class="form-check-input me-2" type="checkbox" value="" name="terms" id="form2Example3cg" required/>
                     <label class="form-check-label" for="form2Example3g">
                       I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
                     </label>
@@ -182,15 +187,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </div>
   </section>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsEhcYf-NZNlL6-FVHfT1GT3XAth8EJk4&callback=initMap"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const error = <?php echo isset($error) ? json_encode($error) : 'null'; ?>;
-      if (error) {
-        const errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
-        errorModal.show();
-      }
-    });
+
+
   </script>
 
 </body>

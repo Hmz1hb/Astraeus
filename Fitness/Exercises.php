@@ -23,7 +23,7 @@ $userId = $_SESSION['user_id'];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
 
-    <link href="./dashboard.css" rel="stylesheet">
+    <link href="./dashboard.css?v=<?php echo time(); ?>" rel="stylesheet">
   </head>
   <body class="bg-dark
   text-light">
@@ -71,7 +71,7 @@ $userId = $_SESSION['user_id'];
               Body Fat Percentage
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="fa-solid fa-calculator"></i>
               Macro Calculation
@@ -82,50 +82,17 @@ $userId = $_SESSION['user_id'];
               <i class="fa-solid fa-calculator"></i>
               Calories Calculator
             </a>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <a class="nav-link" href="./food.php">
               <i class="fa-solid fa-drumstick-bite"></i>
               Mass Meals Recipes
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link active" href="./Exercises.php">
               <i class="fas fa-light fa-dumbbell align-text-bottom"></i>
               Exercise Tutorials
-            </a>
-          </li>
-        </ul>
-
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
-          <span class="text-light">Saved reports</span>
-          <a class="link-secondary" href="#" aria-label="Add a new report">
-            <span data-feather="plus-circle" class="align-text-bottom"></span>
-          </a>
-        </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Current month
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Last quarter
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Social engagement
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Year-end sale
             </a>
           </li>
         </ul>
@@ -198,16 +165,21 @@ $userId = $_SESSION['user_id'];
             </div>
           </div>
       </div>
- 
-      <div id="exerciseCardsContainer" class="row">
-      
+ <div id="damn">
+ <div id="exerciseCardsContainer" class="row">
+ </div>
       </div>
 
     </div>
-      <nav aria-label="Page navigation example ">
-        <ul class="pagination justify-content-center ">
-        </ul>
-      </nav>
+
+    <div id="loadingSpinner" class="text-center mt-5">
+  <div class="spinner-border mt-5" role="status">
+    <span class="visually-hidden mt-5">Loading...</span>
+  </div>
+</div>
+
+
+    
       
       
       <!-- Modal -->
@@ -248,7 +220,12 @@ $userId = $_SESSION['user_id'];
 
     </main>
   </div>
+  
 </div>
+<nav aria-label="Page navigation example ">
+        <ul class="pagination justify-content-center ">
+        </ul>
+      </nav>
 <script>
   
   </script>

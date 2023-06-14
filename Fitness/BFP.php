@@ -26,6 +26,14 @@ $age = $ageInterval->y;
 $gender = $userData['Gender'] == 0 ? 'male' : 'female';
 
 
+// Check if necessary data is null
+$dataCheck = $userData['Height'] && $userData['Weight'] && $userData['waist'] && $userData['neck'] && $userData['hip'];
+
+
+
+
+
+
 
 ?>
 
@@ -49,18 +57,10 @@ $gender = $userData['Gender'] == 0 ? 'male' : 'female';
   text-light">
     
   <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class=" text-center logo navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#"><span>Astraeus</span></a>
+    <a class=" text-center logo navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="./UserInt.php"><span>Astraeus</span></a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation " >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="position-relative w-100">
-      <form action="">
-      <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search" type="text" id="searchInput" oninput="updateSuggestions()" placeholder="Search exercises..." autocomplete="off">
-      <button class="btn btn-outline-success" type="submit" style="display: none;">Search</button>
-    </form>
-      <div id="suggestions" class="suggestions position-absolute w-100">
-      </div>
-    </div>
     <div class="navbar-nav">
       <div class="nav-item text-nowrap">
         <a class="nav-link px-3" href="./signout.php">Sign out</a>
@@ -91,7 +91,7 @@ $gender = $userData['Gender'] == 0 ? 'male' : 'female';
               Body Fat Percentage
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="fa-solid fa-calculator"></i>
               Macro Calculation
@@ -102,13 +102,7 @@ $gender = $userData['Gender'] == 0 ? 'male' : 'female';
               <i class="fa-solid fa-calculator"></i>
               Calories Calculator
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./food.php">
-              <i class="fa-solid fa-drumstick-bite"></i>
-              Mass Meals Recipes
-            </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link " href="./Exercises.php">
               <i class="fas fa-light fa-dumbbell align-text-bottom"></i>
@@ -116,40 +110,6 @@ $gender = $userData['Gender'] == 0 ? 'male' : 'female';
             </a>
           </li>
         </ul>
-
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
-          <span class="text-light">Saved reports</span>
-          <a class="link-secondary" href="#" aria-label="Add a new report">
-            <span data-feather="plus-circle" class="align-text-bottom"></span>
-          </a>
-        </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Current month
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Last quarter
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Social engagement
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Year-end sale
-            </a>
-          </li>
-        </ul>
-      </div>
     </nav>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -276,10 +236,45 @@ $gender = $userData['Gender'] == 0 ? 'male' : 'female';
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" tabindex="-1" id="ProfileForm">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+    
+                    </div>
+                    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <a href="./PersonalSpace.php"><button type="button" class="btn btn-primary">Profile</button></a>
+        
+      </div>
+                </div>
+            </div>
+        </div>
       
     </main>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  var dataCheck = <?php echo $dataCheck ? 'true' : 'false'; ?>;
+
+  if (!dataCheck) {
+    // Show the modal
+    $('#ProfileForm').modal('show');
+
+    // Change the title and body text of the modal
+    $('#ProfileForm .modal-title').text('Incomplete Profile');
+    $('#ProfileForm .modal-body').text('Please fill out your profile form before calculating body fat.');
+  }
+});
+</script>
+
 
 
 

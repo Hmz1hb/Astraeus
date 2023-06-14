@@ -264,11 +264,6 @@ body {
     background-attachment: fixed;
   } */
   
-  #darkModeToggler {
-    font-size: 25px;
-  }
-  
-  
   #body {
     height: 700px;
   }
@@ -313,7 +308,7 @@ body {
   }
 
   #btn-calc {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 600;
     background-image: linear-gradient(to right, #f9ef23, #f9ef23);
     background-repeat: no-repeat;
@@ -332,6 +327,11 @@ body {
     width: 4em;
     left: -4%;
     top: 60px;
+  }
+
+
+  #damn {
+    display: none;
   }
   
  

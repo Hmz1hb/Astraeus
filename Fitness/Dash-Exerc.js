@@ -26,8 +26,14 @@
     });
     exercises = await response.json(); // Store the result in exercises
     originalExercisesData = [...exercises]; // Store a copy of the original data
+      // Hide the loading spinner
+  document.getElementById('loadingSpinner').style.display = 'none';
+
     displayExercises(exercises.slice(0, itemsPerPage)); // Call displayExercises directly from here
     createPaginationButtons(Math.ceil(exercises.length / itemsPerPage));
+
+ 
+    
   }
 
   loadExercises(); // Call the function
@@ -125,6 +131,7 @@
       `;
 
       exerciseCardsContainer.appendChild(exerciseCard);
+      document.getElementById('damn').style.display = 'block';
     });
   }
   function displayModalSave(id) {
@@ -227,12 +234,12 @@ paginationContainer.appendChild(previousButton);
 // First page
 addPageButton(1, currentPage === 1);
 
-if (currentPage > 5) {
+if (currentPage > 2) {
   addDots();
 }
 
 // Surrounding pages
-for (let i = Math.max(2, currentPage - 2); i <= Math.min(totalPages - 1, currentPage + 2); i++) {
+for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
   addPageButton(i, currentPage === i);
 }
 

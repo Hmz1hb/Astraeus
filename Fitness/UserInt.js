@@ -16,7 +16,7 @@ headers: headers
 const data = await response.json();
 
 // Get 11 random exercises
-const randomExercises = getRandomElements(data, 4);
+const randomExercises = getRandomElements(data, 8);
 
 // Modify the ID property to match the actual ID returned from the API
 const exercisesWithCorrectId = randomExercises.map((exercise, index) => ({
@@ -160,12 +160,25 @@ function displayModalSave(id) {
   $.ajax({
     url: './saveEx.php', // Replace this with the actual URL of your PHP page
     type: 'POST',
-    data: { id: id },
-    success: function (response) {
+    data: {id: id},
+    success: function(response) {
       // Handle the response from the PHP page here
-      console.log(response);
+      var modalTitle = 'Save Notice'; // Set the title of the modal
+      var modalDescription = 'Exercise saved successfully!'; // Set the description
+      
+      // Update the modal title and description
+      $('#Savenotice .modal-title').text(modalTitle);
+      $('#Savenotice .modal-body').html(modalDescription + '<br>' + response);
+      
+      // Show the modal
+      $('#Savenotice').modal('show');
+      
+      // Automatically hide the modal after 10 seconds
+      setTimeout(function() {
+        $('#Savenotice').modal('hide');
+      }, 10000);
     },
-    error: function (jqXHR, textStatus, errorThrown) {
+    error: function(jqXHR, textStatus, errorThrown) {
       console.error('An error occurred: ' + textStatus);
     }
   });

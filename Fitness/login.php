@@ -136,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button type="submit" name="login" class="btn btn-block btn-lg gradient-custom-4 text-body" style="background-color:#f9ef23">Login</button>
                   </div>
   
-                  <p class="text-center text-muted mt-5 mb-0">Don't have an account? <a href="./sigup.html" class="fw-bold text-body"><u>Sign up here</u></a></p>
+                  <p class="text-center text-muted mt-5 mb-0">Don't have an account? <a href="./sigup.php" class="fw-bold text-body"><u>Sign up here</u></a></p>
   
                 </form>
   

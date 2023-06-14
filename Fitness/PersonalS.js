@@ -14,9 +14,9 @@ $(document).ready(function() {
             fields.forEach(function(field) {
                 if (field === 'gender') {
                     if (response[field] === 0) {
-                        $('#' + field).text('man');
+                        $('#' + field).text('Male');
                     } else if (response[field] === 1) {
-                        $('#' + field).text('woman');
+                        $('#' + field).text('Female');
                     }
                 } else if (field === 'age') {
                     // Parse the birth date string into a Date object
@@ -48,11 +48,20 @@ $(document).ready(function() {
   var originalData = {};
 
   $(document).on('click', '#editButton', function() {
-    var fields = ['fullName', 'gender', 'weight', 'height', 'age', 'Waist', 'Neck', 'Hip'];
+    var fields = ['fullName', 'weight', 'height', 'Waist', 'Neck', 'Hip','gender'];
     fields.forEach(function(field) {
       var element = $('#' + field);
       var input;
-      if (['height', 'age', 'Waist', 'Neck', 'Hip'].includes(field)) {
+
+      // Gender field needs to be a select
+      if (field === 'gender') {
+        input = $('<select>').attr('id', field + 'Input').addClass('form-control bg-dark text-light custom-inp');
+        
+        $('<option>').val(0).text('Male').appendTo(input);
+        $('<option>').val(1).text('Female').appendTo(input);
+        $('<option>').val('').text('sex').appendTo(input);
+        input.val(element.text() === 'Male' ? 0 : 1);
+      } else if (['height', 'age', 'Waist', 'Neck', 'Hip'].includes(field)) {
         var minMax = {};
         switch(field) {
           case 'height':
@@ -91,8 +100,9 @@ $(document).ready(function() {
     $('<button>').text('Cancel').attr('id', 'cancelButton').addClass('btn btn-custom').insertAfter($(this));
   });
 
+
   $(document).on('click', '#saveButton', function() {
-    var fields = ['fullName', 'gender', 'weight', 'height', 'age', 'Waist', 'Neck', 'Hip'];
+    var fields = ['fullName', 'weight', 'height', 'Waist', 'Neck', 'Hip', 'gender'];
     var data = {};
     var valid = true;
 
@@ -101,7 +111,13 @@ $(document).ready(function() {
       if (!validateInput(field, input)) {
         valid = false;
       }
-      data[field] = input.val();
+
+      // Convert gender value to integer
+      if (field === 'gender') {
+        data[field] = parseInt(input.val(), 10);
+      } else {
+        data[field] = input.val();
+      }
     });
 
     if (!valid) {
@@ -112,14 +128,25 @@ $(document).ready(function() {
       url: './updateUser.php',
       type: 'POST',
       data: data,
+      dataType: 'json',
       success: function(response) {
         fields.forEach(function(field) {
           var input = $('#' + field + 'Input');
-          var p = $('<p>').text(input.val()).attr('id', field).addClass('mb-0');
+          var p = $('<p>').attr('id', field);
+          
+          if (field === 'gender') {
+            p.text(input.find('option:selected').text());
+          } else {
+            p.text(input.val());
+          }
+          
+          p.addClass('mb-0');
           input.replaceWith(p);
         });
+  
         
-        $('#resultModal .modal-body').text(response.message);
+        var responseObject = typeof response === "object" ? response : JSON.parse(response);
+        $('#resultModal .modal-body').text(responseObject.message);
         $('#resultModal').modal('show');
       },
       error: function(jqXHR, textStatus, errorThrown) {
@@ -196,7 +223,7 @@ $(document).ready(function() {
   };
   let exercises= []; // Declare exercises at a higher scope
   let currentPage = 1;
-  const itemsPerPage = 3; // Change this to alter the number of items per page
+  const itemsPerPage = 4; // Change this to alter the number of items per page
    
 
 // Global variable to store the original exercises data
@@ -379,7 +406,7 @@ function createPaginationButtons(totalPages) {
   // First page
   addPageButton(1, currentPage === 1);
   
-  if (currentPage > 5) {
+  if (currentPage > 2) {
     addDots();
   }
   
