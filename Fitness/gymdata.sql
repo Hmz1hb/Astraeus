@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 15, 2023 at 06:23 PM
+-- Generation Time: Jun 15, 2023 at 11:20 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -33,16 +33,16 @@ CREATE TABLE `admin` (
   `lastNameA` varchar(255) NOT NULL,
   `emailA` varchar(255) NOT NULL,
   `passwordA` varchar(255) NOT NULL,
-  `Is confirmed` tinyint(1) NOT NULL
+  `Is_confirmed` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`AdminID`, `firstNameA`, `lastNameA`, `emailA`, `passwordA`, `Is confirmed`) VALUES
+INSERT INTO `admin` (`AdminID`, `firstNameA`, `lastNameA`, `emailA`, `passwordA`, `Is_confirmed`) VALUES
 (1, 'hamza', 'lachehab', 'pifif13572@peogi.com', '$2y$10$hA7r2XYZmlnb53cpZB25GurFHHOzKDpMXxNKSx1uHdDk20tVnFjW2', 1),
-(2, 'nada', 'nada', 'nada@gmail.com', '$2y$10$wXgilWooQcqkxju7bY9kcO/loVU6OeHn2hIC/eOYb4vaaVSzH/eeu', 0);
+(2, 'nada', 'nada', 'hamzalachehabe@gmail.com', '$2y$10$hA7r2XYZmlnb53cpZB25GurFHHOzKDpMXxNKSx1uHdDk20tVnFjW2', 0);
 
 -- --------------------------------------------------------
 
@@ -105,7 +105,7 @@ INSERT INTO `user` (`UserID`, `Name`, `Email`, `Password`, `Phone`, `Weight`, `H
 (3, 'hvhbvg', 'bhbhj@gmail.com', '$2y$10$V8SPw168yhgiLkPHCCgJcekENUBaA92Bpcp14Y0wYh2xusdUC/FHK', '+111111111', NULL, NULL, '1993-10-12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (4, 'hamza', 'hmz@gmail.com', '$2y$10$q5P.gkbdCPnTiBMt56kE7uJgbziQz/XR3nANsp4SRYO9/YV5fNiQC', '+3161129877', NULL, NULL, '1993-10-12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (6, 'Hamza Lachehab', 'hamzalachehabe@gmail.com', '$2y$10$clTtsvrNLgHTnG0PqvbVi.dQJG1M7tBgZNmvQhbjIrYeL9UWbCwl6', '+212690012136', 87, 183, '2003-07-06', NULL, 0, '[27,28,45,40,48,47,44]', NULL, NULL, 50, 96, 93),
-(9, 'Tijs\' grashoff', 'pifif13572@peogi.com', '$2y$10$hA7r2XYZmlnb53cpZB25GurFHHOzKDpMXxNKSx1uHdDk20tVnFjW2', '0611298919', 93, 173, '2002-05-29', NULL, 0, '[6,0,4,1,8]', NULL, NULL, 44, 50, 48),
+(9, 'Tijs grashoff', 'pifif13572@peogi.com', '$2y$10$hA7r2XYZmlnb53cpZB25GurFHHOzKDpMXxNKSx1uHdDk20tVnFjW2', '0611298919', 93, 173, '2002-05-29', NULL, 0, '[6,0,4,1,8]', NULL, NULL, 44, 50, 48),
 (14, 'John Doe', 'johndoe@example.com', '$2y$10$hA7r2XYZmlnb53cpZB25GurFHHOzKDpMXxNKSx1uHdDk20tVnFjW2', '+123456789', 75, 180, '1990-05-15', NULL, 1, '[1, 2, 4]', NULL, NULL, 32, 34, 38),
 (15, 'Jane Smith', 'janesmith@example.com', '$2y$10$hA7r2XYZmlnb53cpZB25GurFHHOzKDpMXxNKSx1uHdDk20tVnFjW2', '+987654321', 62, 165, '1995-08-22', NULL, 0, '[2, 3]', NULL, NULL, 28, 26, 32),
 (16, 'Michael Johnson', 'michaeljohnson@example.com', '$2y$10$hA7r2XYZmlnb53cpZB25GurFHHOzKDpMXxNKSx1uHdDk20tVnFjW2', '+555555555', 80, 190, '1985-03-10', NULL, 1, '[1, 2, 3, 4]', NULL, NULL, 36, 40, 42),
@@ -131,7 +131,8 @@ INSERT INTO `user` (`UserID`, `Name`, `Email`, `Password`, `Phone`, `Weight`, `H
 (36, 'Liam Taylor', 'liamtaylor@example.com', '$2y$10$hA7r2XYZmlnb53cpZB25GurFHHOzKDpMXxNKSx1uHdDk20tVnFjW2', '+888888888', 70, 180, '1986-11-14', NULL, 1, '[1, 3]', NULL, NULL, 34, 32, 36),
 (37, 'Isabella Smith', 'isabellasmith@example.com', '$2y$10$hA7r2XYZmlnb53cpZB25GurFHHOzKDpMXxNKSx1uHdDk20tVnFjW2', '+111111111', 58, 165, '1991-07-08', NULL, 0, '[2, 4]', NULL, NULL, 30, 28, 32),
 (38, 'Henry Davis', 'henrydavis@example.com', '$2y$10$hA7r2XYZmlnb53cpZB25GurFHHOzKDpMXxNKSx1uHdDk20tVnFjW2', '+222222222', 80, 190, '1984-03-30', NULL, 1, '[1, 2]', NULL, NULL, 36, 34, 38),
-(40, 'Oliver Wilson', 'oliverwilson@example.com', '$2y$10$hA7r2XYZmlnb53cpZB25GurFHHOzKDpMXxNKSx1uHdDk20tVnFjW2', '+888888888', 77, 185, '1987-09-28', NULL, 1, '[2, 4]', NULL, NULL, 36, 38, 40);
+(40, 'Oliver Wilson', 'oliverwilson@example.com', '$2y$10$hA7r2XYZmlnb53cpZB25GurFHHOzKDpMXxNKSx1uHdDk20tVnFjW2', '+888888888', 77, 185, '1987-09-28', NULL, 1, '[2, 4]', NULL, NULL, 36, 38, 40),
+(41, 'Akbar 9awad f l3alam ', 'hatimnaim2020@gmail.com', '$2y$10$H1IkY8AIQU3LPkC0QP9zFuYR59ZQhvbxSVo6KnN0g1LoDqKzuEmFa', '0629900831', NULL, NULL, '2000-07-31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -188,7 +189,7 @@ ALTER TABLE `password_resets`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `UserID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Constraints for dumped tables
