@@ -1,13 +1,14 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['adminID'])) {
-  // Redirect to login page
-  header('Location: ./loginAdmin.php');
-  exit(); // Important: stop executing the rest of the script
-}
+if (!isset($_SESSION['adminID']) || $_SESSION['isAdminConfirmed'] != 1) {
+    // Redirect to login page
+    header('Location: ./loginAdmin.php');
+    exit(); // Important: stop executing the rest of the script
+  }
+  
 
-$adminID = $_SESSION['adminID']; 
+$adminID = $_SESSION['adminID'];
 
 
 

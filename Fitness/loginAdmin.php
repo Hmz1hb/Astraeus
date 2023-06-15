@@ -19,11 +19,11 @@ try {
 
                 if ($user && !empty($user['passwordA']) && password_verify($password, $user['passwordA'])) {
                   // Additional check if the admin is confirmed
-                  if ($user['Is confirmed'] == 1) {
+                  if ($user['Is_confirmed'] == 1) {
                       // Password is correct, start a new session and save the user's ID in the session.
                       session_start();
                       $_SESSION['adminID'] = $user['AdminID'];
-                      $_SESSION['isAdminConfirmed'] = $user['Is confirmed']; 
+                      $_SESSION['isAdminConfirmed'] = $user['Is_confirmed']; 
                       header("Location: ./DashBoardAdmin.php");  // redirect to dashboard page or whatever your success page is
                       exit();
                   } else {
