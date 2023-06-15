@@ -69,7 +69,7 @@ $userId = $_SESSION['user_id'];
   
 <div class="container-fluid ">
   <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block  sidebar collapse">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
@@ -80,38 +80,26 @@ $userId = $_SESSION['user_id'];
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="./PersonalSpace.php">
-              <span data-feather="file" class="align-text-bottom"></span>
+            <i class="fa fa-user" aria-hidden="true"></i>
               Personal Wellbeing
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="./BFP.php">
-              <span data-feather="file" class="align-text-bottom"></span>
+            <i class="fa-solid fa-calculator"></i>
               Body Fat Percentage
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="fa-solid fa-calculator"></i>
-              Macro Calculation
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="fa-solid fa-calculator"></i>
-              Calories Calculator
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./food.php">
-              <i class="fa-solid fa-drumstick-bite"></i>
-              Mass Meals Recipes
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="./Exercises.php">
               <i class="fas fa-light fa-dumbbell align-text-bottom"></i>
               Exercise Tutorials
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="./radio.php">
+              <i class="fa fa-music" aria-hidden="true"></i>
+              Live Music
             </a>
           </li>
         </ul>
@@ -348,10 +336,11 @@ $userId = $_SESSION['user_id'];
 <script src="./PersonalS.js"></script>
 
 
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
-       <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-        
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+<script src="./dashboard.js"></script>
 
   </body>
 </html>

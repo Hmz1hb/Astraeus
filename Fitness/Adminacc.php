@@ -25,27 +25,6 @@ try {
   throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 
-try {
-  $pdo = new PDO($dsn, $user, $pass, $options);
-
-  $stmt = $pdo->query("SELECT COUNT(*) as totalUsers FROM user");
-  $row = $stmt->fetch();
-  $totalUsers = $row['totalUsers'];
-
-  $stmt = $pdo->query("SELECT Gender, 
-  CASE 
-    WHEN TIMESTAMPDIFF(YEAR, Age, CURDATE()) BETWEEN 16 AND 25 THEN '16-25'
-    WHEN TIMESTAMPDIFF(YEAR, Age, CURDATE()) BETWEEN 26 AND 35 THEN '26-35'
-    WHEN TIMESTAMPDIFF(YEAR, Age, CURDATE()) BETWEEN 36 AND 65 THEN '36-65'
-    ELSE '65+' 
-  END AS AgeRange 
-  FROM user");
-$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-} catch (\PDOException $e) {
-throw new \PDOException($e->getMessage(), (int)$e->getCode());
-}
-
 ?>
 
 
@@ -83,13 +62,13 @@ throw new \PDOException($e->getMessage(), (int)$e->getCode());
           <div class="position-sticky pt-3 sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="./UserInt.php">
+                <a class="nav-link " aria-current="page" href="./DashBoardAdmin.php">
                   <span data-feather="home" class="align-text-bottom"></span>
                   Dashboard
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./Adminacc.php">
+                <a class="nav-link active" href="./Adminacc.php">
                   <i class="fa fa-user" aria-hidden="true"></i>
                   Accounts
                 </a>
@@ -185,19 +164,13 @@ throw new \PDOException($e->getMessage(), (int)$e->getCode());
 
 
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h2 class="h2">Gender to age ration</h2> 
+            <h2 class="h2">Todays Quotes</h2> 
             <div class="btn-toolbar mb-2 mb-md-0"> 
             </div>
           </div> 
-          <div class="row">
-  <div class="col-md-6">
-    <canvas class="my-4 w-100" id="myChartMale"></canvas>
-  </div>
-  <div class="col-md-6">
-    <canvas class="my-4 w-100" id="myChartFemale"></canvas>
-  </div>
-</div>
 
+            <div class="quote-card">
+          </div>
         </main>
         
       </div>
@@ -229,78 +202,8 @@ countExercises();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-    <script>
-var data = <?php echo json_encode($data); ?>;
-
-(() => {
-  'use strict'
-
-  feather.replace({ 'aria-hidden': 'true' })
-
-  // Preprocess data
-  var ageRanges = ['16-25', '26-35', '36-65', '65+'];
-  var maleCounts = [0, 0, 0, 0];
-  var femaleCounts = [0, 0, 0, 0];
-  for (let i = 0; i < data.length; i++) {
-    var index = ageRanges.indexOf(data[i].AgeRange);
-    if (data[i].Gender === 0) {
-      maleCounts[index]++;
-    } else {
-      femaleCounts[index]++;
-    }
-  }
-
-  // Graphs
-  var ctxMale = document.getElementById('myChartMale');
-  var ctxFemale = document.getElementById('myChartFemale');
-
-  new Chart(ctxMale, {
-    type: 'doughnut',
-    data: {
-      labels: ageRanges,
-      datasets: [{
-        data: maleCounts,
-        backgroundColor: [
-          '#ff6384',
-          '#36a2eb',
-          '#cc65fe',
-          '#ffce56'
-        ]
-      }]
-    },
-    options: {
-      title: {
-        display: true,
-        text: 'Male Age Ranges'
-      }
-    }
-  });
-
-  new Chart(ctxFemale, {
-    type: 'doughnut',
-    data: {
-      labels: ageRanges,
-      datasets: [{
-        data: femaleCounts,
-        backgroundColor: [
-          '#ff6384',
-          '#36a2eb',
-          '#cc65fe',
-          '#ffce56'
-        ]
-      }]
-    },
-    options: {
-      title: {
-        display: true,
-        text: 'Female Age Ranges'
-      }
-    }
-  });
-
-})()
-</script>
-
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script> -->
+    <script src="dashboard.js"></script>
+   
   </body>
 </html>

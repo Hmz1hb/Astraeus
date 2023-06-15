@@ -20,7 +20,7 @@ try {
                 if ($user && !empty($user['passwordA']) && password_verify($password, $user['passwordA'])) {
                     // Password is correct, start a new session and save the user's ID in the session.
                     $_SESSION['adminID'] = $user['AdminID'];
-                    header("Location: DashBoardAdmin.php");  // redirect to dashboard page or whatever your success page is
+                    header("Location: ./DashBoardAdmin.php");  // redirect to dashboard page or whatever your success page is
                     exit();
                 } else {
                     // If the password is not correct or no such user

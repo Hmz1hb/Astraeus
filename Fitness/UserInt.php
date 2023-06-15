@@ -40,7 +40,7 @@ $userId = $_SESSION['user_id'];
 
     <div class="container-fluid">  
       <div class="row">
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
           <div class="position-sticky pt-3 sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
@@ -51,38 +51,26 @@ $userId = $_SESSION['user_id'];
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="./PersonalSpace.php">
-                  <span data-feather="file" class="align-text-bottom"></span>
+                  <i class="fa fa-user" aria-hidden="true"></i>
                   Personal Wellbeing
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link " href="./BFP.php">
-                  <span data-feather="file" class="align-text-bottom"></span>
+                  <i class="fa fa-calculator" aria-hidden="true"></i>
                   Body Fat Percentage
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="fa-solid fa-calculator"></i>
-                  Macro Calculation
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="fa-solid fa-calculator"></i>
-                  Calories Calculator
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./food.php">
-                  <i class="fa-solid fa-drumstick-bite"></i>
-                  Mass Meals Recipes
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="./Exercises.php">
                   <i class="fas fa-light fa-dumbbell align-text-bottom"></i>
                   Exercise Tutorials
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./radio.php">
+                  <i class="fa fa-music" aria-hidden="true"></i>
+                  Live Radio
                 </a>
               </li>
             </ul>
@@ -135,12 +123,7 @@ $userId = $_SESSION['user_id'];
 
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h2 class="h2">Todays Quotes</h2> 
-            <div class="btn-toolbar mb-2 mb-md-0">
-              <a href="./Exercises.php">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                  Another Exercises
-                </button>
-              </a>
+            <div class="btn-toolbar mb-2 mb-md-0"> 
             </div>
           </div> 
 
