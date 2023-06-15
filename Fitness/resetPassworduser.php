@@ -9,12 +9,21 @@ use PHPMailer\PHPMailer\SMTP;
 
 include "db.php";
 
+// Check if the email exists in the user table
+$email = $_POST['email'];
+
+$stmt = $pdo->prepare("SELECT * FROM user WHERE Email = :email");
+$stmt->execute(['email' => $email]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+  // Email not found, show error modal
+  echo '<script>$("#errorModal .modal-body").text("Email not found"); $("#errorModal").modal("show");</script>';
+  exit;
+}
+
 // Generate a random hashed password
 $randomPassword = substr(md5(uniqid(rand(), true)), 0, 10); // Change length as needed
-
-// Get the user's email and ID from the request
-$userID = $_POST['userID'];
-$email = $_POST['email'];
 
 // Insert user info into password_resets table
 $token = password_hash($randomPassword, PASSWORD_DEFAULT);
@@ -22,7 +31,7 @@ $tokenExpire = date('Y-m-d H:i:s', strtotime('+10 minutes')); // Token expiratio
 
 $stmt = $pdo->prepare("INSERT INTO password_resets (UserID, Email, Token, TokenExpire) VALUES (:userID, :email, :token, :tokenExpire)");
 $stmt->execute([
-  'userID' => $userID,
+  'userID' => $user['UserID'], // Use the fetched user ID
   'email' => $email,
   'token' => $token,
   'tokenExpire' => $tokenExpire
@@ -114,10 +123,8 @@ $mail->Body = '<!DOCTYPE html>
 </html>';
 
 if ($mail->send()) {
-  error_log('Email sent successfully'); // Console log message
-  echo 'Email sent successfully';
+  echo '<script>$("#successModal").modal("show");</script>';
 } else {
-  error_log('Email could not be sent'); // Console log message
-  echo 'Email could not be sent';
+  echo '<script>$("#errorModal .modal-body").text("Email could not be sent"); $("#errorModal").modal("show");</script>';
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 include 'db.php';
 
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bootstrap Site</title>
+  <title>Astraeus - Log In</title>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
@@ -137,6 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </div>
   
                   <p class="text-center text-muted mt-5 mb-0">Don't have an account? <a href="./sigup.php" class="fw-bold text-body"><u>Sign up here</u></a></p>
+                  <p class="text-center text-muted mt-5 mb-0">Forgot your password? <a href="./resetpageuseremail.php" class="fw-bold text-body"><u>Reset</u></a></p>
   
                 </form>
   

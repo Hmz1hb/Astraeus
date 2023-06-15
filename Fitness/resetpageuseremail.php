@@ -3,47 +3,37 @@
 
 include 'db.php';
 
-$error = '';
-
 try {
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST["login"])) {
-            if (!empty($_POST['email']) && !empty($_POST['password'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(isset($_POST["login"])) {
+        if (!empty($_POST['email']) && !empty($_POST['password'])) {
 
-                $email = $_POST['email'];
-                $password = $_POST['password'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];  
 
-                $stmt = $pdo->prepare("SELECT * FROM admin WHERE emailA = :email");
-                $stmt->execute(['email' => $email]);
-                $user = $stmt->fetch();
+            $stmt = $pdo->prepare("SELECT * FROM User WHERE Email = :email");
+            $stmt->execute(['email' => $email]);
+            $user = $stmt->fetch();
 
-                if ($user && !empty($user['passwordA']) && password_verify($password, $user['passwordA'])) {
-                    // Password is correct, start a new session and save the user's ID in the session.
-                    session_start();
-                    $_SESSION['adminID'] = $user['AdminID'];
-                    header("Location: ./DashBoardAdmin.php");  // redirect to dashboard page or whatever your success page is
-                    exit();
-                } else {
-                    // If the password is not correct or no such user
-                    $error = "Incorrect email or password!";
-                    echo '<script>console.error("' . $error . '");</script>';
-                }
+            if ($user && password_verify($password, $user['Password'])) {
+                // Password is correct, start a new session and save the user's ID in to the session.
+                session_start();
+                $_SESSION['user_id'] = $user['UserID'];
+                header("Location: PersonalSpace.php");  // redirect to dashboard page or whatever your success page is
             } else {
-                $error = "You must enter email and password.";
-                echo '<script>console.error("' . $error . '");</script>';
+                // If the password is not correct or no such user
+                $error =  "Incorrect email or password!";
             }
+        } else {
+          $error =  "You must enter email and password.";
         }
     }
-} catch (PDOException $e) {
-    $error = 'Connection failed: ' . $e->getMessage();
-    echo '<script>console.error("' . $error . '");</script>';
 }
+} catch (PDOException $e) {
+  $error = 'Connection failed: ' . $e->getMessage();
+}
+
 ?>
-
-
-<!-- Rest of your HTML code -->
-
-
 
 
 
@@ -55,7 +45,7 @@ try {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Astraeus - Admin Long In</title>
+  <title>Astraeus - Reset Password</title>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
@@ -66,6 +56,7 @@ try {
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js" defer></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
     :root {
@@ -100,7 +91,7 @@ try {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <?php echo $error; ?>
+       
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -121,33 +112,20 @@ try {
             <div class="card" style="border-radius: 15px;">
               <div class="card-body p-5">
                 <h1 class="logo mb-5 text-center"><span>Astraeus</span></h1>
-                <h2 class="text-uppercase text-center mb-5 mt-5">Login to your account</h2>
+                <h2 class="text-uppercase text-center mb-5 mt-5">Password Reset</h2>
   
-                <form action="" method="post">
+                <form id="resetForm" action="" method="post">
   
                   <div class="form-outline mb-4">
                     <input type="email" id="form3Example3cg" name="email" class="form-control form-control-lg" />
                     <label class="form-label" for="form3Example3cg">Your Email</label>
                   </div>
-  
-                  <div class="form-outline mb-4">
-                    <input type="password" id="form3Example4cg" name="password" class="form-control form-control-lg" />
-                    <label class="form-label" for="form3Example4cg">Password</label>
-                  </div>
-  
-                  <div class="form-check d-flex justify-content-center mb-5">
-                    <input class="form-check-input me-2" name="checkremember" type="checkbox" value="" id="form2Example3cg" />
-                    <label class="form-check-label" for="form2Example3g">
-                      Remember me
-                    </label>
-                  </div>
-  
+
                   <div class="d-flex justify-content-center">
-                    <button type="submit" name="login" class="btn btn-block btn-lg gradient-custom-4 text-body" style="background-color:#f9ef23">Login</button>
+                    <button type="submit" name="login" class="btn btn-block btn-lg gradient-custom-4 text-body" style="background-color:#f9ef23">Reset</button>
                   </div>
   
                   <p class="text-center text-muted mt-5 mb-0">Don't have an account? <a href="./sigup.php" class="fw-bold text-body"><u>Sign up here</u></a></p>
-  
                 </form>
   
               </div>
@@ -158,6 +136,40 @@ try {
     </div>
   </section>
 
+  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">Success</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Password reset link sent successfully.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <div class="modal-body">
+        Email not found
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const error = <?php echo isset($error) ? json_encode($error) : 'null'; ?>;
@@ -166,6 +178,36 @@ try {
         errorModal.show();
       }
     });
+
+    $(document).ready(function() {
+  $('form').on('submit', function(e) {
+    e.preventDefault();
+    var email = $('#form3Example3cg').val();
+
+    $.ajax({
+      url: 'resetPassworduser.php',
+      type: 'post',
+      data: { email: email },
+      success: function(response) {
+        if (response.includes('Email not found')) {
+          $('#errorModal .modal-body').text('Email not found');
+          $('#errorModal').modal('show');
+        } else if (response.includes('Email could not be sent')) {
+          $('#errorModal .modal-body').text('Email could not be sent');
+          $('#errorModal').modal('show');
+        } else {
+          $('#successModal').modal('show');
+        }
+      },
+      error: function() {
+        $('#errorModal .modal-body').text('An error occurred');
+        $('#errorModal').modal('show');
+      }
+    });
+  });
+});
+
+
   </script>
 </body>
 </html>
