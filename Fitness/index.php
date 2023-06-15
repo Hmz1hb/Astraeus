@@ -6,7 +6,7 @@
 	<title>Astraeus</title>
 
 	<!-- External CSS link -->
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	
@@ -157,44 +157,22 @@
 		</div>
 	</section>
 
-	<footer class="footer-widget">
-    <div class="container">
+	<section class="footer-widget">
+	<div class="container">
         <div class="row">
             <div class="col-lg-6">
                 <h2 class="main-heading text-center mb-5">
-                   Contact Us <br>
+                    Contact Us <br>
                     <span>Today</span>
                 </h2>
-                <!-- <div class="d-grid gap-2 col-6 mx-auto">
-                    <a href="./sigup.html">
-                        <button type="button" class="btn btn-warning btn-lg text-dark" >Sign up now</button>
-                    </a>
-                </div> -->
             </div>
-			
             <div class="col-lg-6 mt-5">
-              
-			<form class="row g-3" id="contactForm">
-                    <div class="col-md-6">
-                        <label class="visually-hidden" for="inputName">Nom</label>
-                        <input class="form-control form-livedoc-control bg-dark text-white border border-0" id="inputName" type="text" placeholder="Name" name="name" />
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label visually-hidden" for="inputEmail">Email</label>
-                        <input class="form-control form-livedoc-control bg-dark text-white border-0" id="inputEmail" type="email" placeholder="Email" name="email" />
-                    </div>
-                    <div class="col-md-12">
-                        <label class="form-label visually-hidden" for="validationTextarea">Message</label>
-                        <textarea class="form-control form-livedoc-control bg-dark text-white border-0" id="validationTextarea" placeholder="Message" style="height: 250px;" required="required" name="message"></textarea>
-                    </div>
-                    <div class="col-12">
-                        <div class="d-grid">
-                            <button class="btn rounded-pill" style="font-weight: 900; font-style: italic; text-transform: uppercase; --bs-btn-font-size: 2rem; background-color: #f9ef23; transition: .5s; border: none;"type="submit">Send</button>
-                        </div>
-                    </div>
-                </form>
-
-				
+				<form id="contactForm" >      
+					<input name="name" id="inputEmail" type="text" id="inputName" class="feedback-input" placeholder="Name" />   
+					<input name="email" type="text" class="feedback-input" placeholder="Email" />
+					<textarea name="message" id="validationTextarea" class="feedback-input" placeholder="Comment"></textarea>
+					<button class="btn rounded-pill" style="font-weight: 900; font-style: italic; text-transform: uppercase; --bs-btn-font-size: 2rem; background-color: #f9ef23; transition: .5s; border: none;"type="submit">Send</button>
+				</form>
             </div>
         </div>
     </div>
@@ -214,30 +192,7 @@
                     </div>
                 </div>
             </div>
-</footer>
-<script>
-
-$(document).ready(function() {
-            $("#contactForm").submit(function(e) {
-                e.preventDefault();
-
-                $.ajax({
-                    url: 'mail.php', // Change this to your PHP script URL
-                    type: 'POST',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        // Fill the modal body with the response
-                        $('#myModal .modal-body').html(response);
-
-                        // Show the modal
-                        $('#myModal').modal('show');
-                    }
-                });
-            });
-        });
-
-</script>
-
+</section>
 	<footer class="footer-bottom">
 		<div class="container">
 			<div class="row">
@@ -274,6 +229,30 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</footer>
+
+	<script>
+
+$(document).ready(function() {
+            $("#contactForm").submit(function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: 'mail.php', // Change this to your PHP script URL
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        // Fill the modal body with the response
+                        $('#myModal .modal-body').html(response);
+
+                        // Show the modal
+                        $('#myModal').modal('show');
+                    }
+                });
+            });
+        });
+
+</script>
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous" defer></script>
 </body>
 </html>

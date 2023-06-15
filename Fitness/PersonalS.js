@@ -80,7 +80,7 @@ $(document).ready(function() {
         }
         input = $('<input>', {min: minMax.min, max: minMax.max, type: 'number'}).val(element.text()).attr('id', field + 'Input').addClass('form-control bg-dark text-light custom-inp');
       } else {
-        input = $('<input>').val(element.text()).attr('id', field + 'Input').addClass('form-control bg-dark text-light custom-inp');
+        input = $('<input>').val(element.text()).attr('id', field + 'Input').addClass('form-control bg-dark text-light custom-inp me-2 ms-2');
       }
 
       // Create an error message container
@@ -97,7 +97,7 @@ $(document).ready(function() {
     });
 
     $(this).text('Save').attr('id', 'saveButton');
-    $('<button>').text('Cancel').attr('id', 'cancelButton').addClass('btn btn-custom').insertAfter($(this));
+    $('<button>').text('Cancel').attr('id', 'cancelButton').addClass('btn btn-sm btn-outline-secondary').insertAfter($(this));
   });
 
 

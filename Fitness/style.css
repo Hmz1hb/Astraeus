@@ -270,11 +270,12 @@ img
 /*-------------- Footer widget styling start -------------*/
 .footer-widget
 {
-	height: 60vh;
+	min-height: 100vh;
 	background-image: url(img/bradcam_1.png);
 	background-size: cover;
 	background-position: center center;
 }
+
 
 .footer-widget .container
 {
@@ -404,7 +405,7 @@ img
 	/*-------------- Testimonial section --------------*/
 	.testimonial
 	{
-		/*margin: 2rem 0*/
+		/* margin: 2rem 0 */
 	}
 
 	.testimonial .container
@@ -429,7 +430,7 @@ img
 	/*--------------- Footer ---------------*/
 	.footer-widget
 	{
-		height: 70vh;
+		min-height: 70vh;
 	}
 
 	.footer-widget .container
@@ -450,3 +451,57 @@ img
 		justify-content: space-between;
 	}
 }
+
+
+
+
+form { 
+	max-width:420px;
+	 margin-top: 5rem;
+}
+
+.feedback-input {
+
+  color:white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight:500;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 22px;
+  background:black;
+  background:rgba(0,0,0,0.8);
+  border:2px solid #f9ef23;
+  transition: all 0.3s;
+  padding: 13px;
+  margin-bottom: 15px;
+  width:100%;
+  box-sizing: border-box;
+  outline:0;
+
+  
+}
+
+.feedback-input:focus { border:2px solid #f9ef23; }
+
+textarea {
+  height: 150px;
+  line-height: 150%;
+  resize:vertical;
+}
+
+[type="submit"] {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  width: 100%;
+  background:#f9ef23;
+  border-radius:5px;
+  border:0;
+  cursor:pointer;
+  color:white;
+  font-size:24px;
+  padding-top:10px;
+  padding-bottom:10px;
+  transition: all 0.3s;
+  margin-top:-4px;
+  font-weight:700;
+}
+[type="submit"]:hover { background:#f9ef23; }

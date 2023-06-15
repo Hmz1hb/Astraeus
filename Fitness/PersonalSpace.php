@@ -109,25 +109,18 @@ $userId = $_SESSION['user_id'];
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 ">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Your Profile</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+              
+                <button id="editButton" type="button" class="btn btn-sm btn-outline-secondary">
+                Edit
+                </button>
+              
+            </div>
       </div>
       <section>
         <div class="container-fluid py-5">
           <div class="row">
-            <div class="col-lg-4 ">
-              <div class="card mb-4 bg-dark text-light">
-                <div class="card-body text-center ">
-                  <img src="./img/author-c.png" alt="avatar"
-                    class="rounded-circle img-fluid" style="aspect-ratio: 1; width: 15rem;">
-                  <!-- <h5 class="my-3" id="fullName">First name + last name</h5> -->
-                  <p class=" mb-1">is he a premuim user</p>
-                  <!-- <p class=" mb-4">Gender</p> -->
-                  <div class="d-flex justify-content-center mb-2">
-                    <button type="button" class="btn btn-custom" id="editButton">Edit</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-8">
+            <div class="col-lg-12">
               <div class="card mb-4 bg-dark text-light ">
                 <div class="card-body">
                   <div class="row">
@@ -222,39 +215,6 @@ $userId = $_SESSION['user_id'];
                 </div>
               </div>
               <div class="row">
-                <!-- <div class="col-md-6">
-                  <div class="card mb-4 mb-md-0">
-                    <div class="card-body">
-                      <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
-                      </p>
-                      <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                      <div class="progress rounded" style="height: 5px;">
-                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                      <div class="progress rounded" style="height: 5px;">
-                        <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                      <div class="progress rounded" style="height: 5px;">
-                        <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                      <div class="progress rounded" style="height: 5px;">
-                        <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                      <div class="progress rounded mb-2" style="height: 5px;">
-                        <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
               </div>
             </div>
           </div>
