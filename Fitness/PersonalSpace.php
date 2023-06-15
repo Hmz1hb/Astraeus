@@ -50,13 +50,13 @@ $userId = $_SESSION['user_id'];
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation " >
       <span class="navbar-toggler-icon"></span>
     </button>
-      <!-- <div class="position-relative w-100">
+      <div class="position-relative w-100">
         <form action="">
-        <input class="form-control form-control-dark w-100 rounded-0 border-0  " type="text" placeholder="Search" aria-label="Search" type="text" id="searchInput" oninput="updateSuggestions()" placeholder="Search exercises..." autocomplete="off" >
+        <input class="form-control form-control-dark w-100 rounded-0 border-0  " type="text" placeholder="Search" aria-label="Search" type="text" id="searchInput" oninput="updateSuggestions()" placeholder="Search exercises..." autocomplete="off" disabled>
         <button class="btn btn-outline-success" type="submit" style="display: none;">Search</button>
       </form>
         <div id="suggestions" class="suggestions position-absolute w-100">
-        </div> -->
+        </div>
     </div>
     <div class="navbar-nav">
       <div class="nav-item text-nowrap">
