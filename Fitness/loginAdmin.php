@@ -18,16 +18,24 @@ try {
                 $user = $stmt->fetch();
 
                 if ($user && !empty($user['passwordA']) && password_verify($password, $user['passwordA'])) {
-                    // Password is correct, start a new session and save the user's ID in the session.
-                    session_start();
-                    $_SESSION['adminID'] = $user['AdminID'];
-                    header("Location: ./DashBoardAdmin.php");  // redirect to dashboard page or whatever your success page is
-                    exit();
-                } else {
-                    // If the password is not correct or no such user
-                    $error = "Incorrect email or password!";
-                    echo '<script>console.error("' . $error . '");</script>';
-                }
+                  // Additional check if the admin is confirmed
+                  if ($user['Is confirmed'] == 1) {
+                      // Password is correct, start a new session and save the user's ID in the session.
+                      session_start();
+                      $_SESSION['adminID'] = $user['AdminID'];
+                      $_SESSION['isAdminConfirmed'] = $user['Is confirmed']; 
+                      header("Location: ./DashBoardAdmin.php");  // redirect to dashboard page or whatever your success page is
+                      exit();
+                  } else {
+                      $error = "Your account is not yet confirmed!";
+                      echo '<script>console.error("' . $error . '");</script>';
+                  }
+              } else {
+                  // If the password is not correct or no such user
+                  $error = "Incorrect email or password!";
+                  echo '<script>console.error("' . $error . '");</script>';
+              }
+          
             } else {
                 $error = "You must enter email and password.";
                 echo '<script>console.error("' . $error . '");</script>';
@@ -39,13 +47,6 @@ try {
     echo '<script>console.error("' . $error . '");</script>';
 }
 ?>
-
-
-<!-- Rest of your HTML code -->
-
-
-
-
 
 
 
@@ -120,8 +121,9 @@ try {
           <div class="col-12 col-md-9 col-lg-7 col-xl-6">
             <div class="card" style="border-radius: 15px;">
               <div class="card-body p-5">
-                <h1 class="logo mb-5 text-center"><span>Astraeus</span></h1>
-                <h2 class="text-uppercase text-center mb-5 mt-5">Login to your account</h2>
+                <a href="./index.php" style="text-decoration: none;"><h1 class="logo mb-5 text-center"><span>Astraeus</span></h1></a>
+                
+                <h2 class="text-uppercase text-center mb-5 mt-5">Welcome Back</h2>
   
                 <form action="" method="post">
   
@@ -135,12 +137,12 @@ try {
                     <label class="form-label" for="form3Example4cg">Password</label>
                   </div>
   
-                  <div class="form-check d-flex justify-content-center mb-5">
+                  <!-- <div class="form-check d-flex justify-content-center mb-5">
                     <input class="form-check-input me-2" name="checkremember" type="checkbox" value="" id="form2Example3cg" />
                     <label class="form-check-label" for="form2Example3g">
                       Remember me
                     </label>
-                  </div>
+                  </div> -->
   
                   <div class="d-flex justify-content-center">
                     <button type="submit" name="login" class="btn btn-block btn-lg gradient-custom-4 text-body" style="background-color:#f9ef23">Login</button>

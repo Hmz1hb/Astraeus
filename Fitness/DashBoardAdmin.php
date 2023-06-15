@@ -94,6 +94,12 @@ throw new \PDOException($e->getMessage(), (int)$e->getCode());
                   Accounts
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link " href="./AdminaccApp.php">
+                  <i class="fa fa-user-circle" aria-hidden="true"></i>
+                  Admin Accounts
+                </a>
+              </li>
             </ul>
 
           </div>
@@ -137,10 +143,10 @@ throw new \PDOException($e->getMessage(), (int)$e->getCode());
             </div>
           </div> 
           <div class="row">
-  <div class="col-md-6">
+  <div class="col-sm-12 col-lg-6">
     <canvas class="my-4 w-100" id="myChartMale"></canvas>
   </div>
-  <div class="col-md-6">
+  <div class="col-sm-12 col-lg-6">
     <canvas class="my-4 w-100" id="myChartFemale"></canvas>
   </div>
 </div>

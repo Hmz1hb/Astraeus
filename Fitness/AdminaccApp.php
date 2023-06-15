@@ -1,29 +1,15 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['adminID'])) {
-  // Redirect to login page
-  header('Location: ./loginAdmin.php');
-  exit(); // Important: stop executing the rest of the script
-}
+if (!isset($_SESSION['adminID']) || $_SESSION['isAdminConfirmed'] != 1) {
+    // Redirect to login page
+    header('Location: ./loginAdmin.php');
+    exit(); // Important: stop executing the rest of the script
+  }
+  
 
 $adminID = $_SESSION['adminID']; 
 
-
-
-// Connect to the database
-require_once 'db.php';
-
-try {
-  $pdo = new PDO($dsn, $user, $pass, $options);
-
-  $stmt = $pdo->query("SELECT COUNT(*) as totalUsers FROM user");
-  $row = $stmt->fetch();
-  $totalUsers = $row['totalUsers'];
-
-} catch (\PDOException $e) {
-  throw new \PDOException($e->getMessage(), (int)$e->getCode());
-}
 
 ?>
 
@@ -72,13 +58,13 @@ try {
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="./Adminacc.php">
+                <a class="nav-link " href="./Adminacc.php">
                   <i class="fa fa-user" aria-hidden="true"></i>
-                  User Accounts
+                  Accounts
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./AdminaccApp.php">
+                <a class="nav-link active" href="./AdminaccApp.php">
                   <i class="fa fa-user-circle" aria-hidden="true"></i>
                   Admin Accounts
                 </a>
@@ -100,24 +86,21 @@ try {
           </div>
 
           <div class="table-responsive">
-          <table class="table table-striped table-sm table-dark" id="userTable">
+          <table class="table table-striped table-sm table-dark" id="adminTable">
             <thead>
-              <tr>
-              <th>#</th>
-                <th>Name</th>
+            <tr>
+                <th>Admin ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>Email</th>
-                <th>Phone</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Exercises</th>
-                <th>Ticket ID</th>
-                <th>Reset Password</th>
+                <th>Confirmed</th>
+                <th>Confirm</th>
                 <th>Delete</th>
-              </tr>
+            </tr>
             </thead>
             <tbody>
             </tbody>
-          </table>
+        </table>
         </div>
 
   </div>
@@ -184,9 +167,12 @@ try {
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="Adminacc.js"></script>
+<script>
 
-  <!-- <script src="./UserInt.js"></script> -->
+
+</script>
+
+  <script src="./AdminaccApp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
