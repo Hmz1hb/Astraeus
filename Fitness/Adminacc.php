@@ -39,7 +39,11 @@ try {
     <title>Astraeus Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfuyQM4tIRAI062MaV8sfjQKYVGjOBaZBOA87z+IhZE9DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.js" integrity="sha512-3FKAKNDHbfUwAgW45wNAvfgJDDdNoTi5PZWU7ak3Xm0X8u0LbDBWZEyPklRebTZ8r+p0M2KIJWDYZQjDPyYQEA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js" integrity="sha512-UNbeFrHORGTzMn3HTt00fvdojBYHLPxJbLChmtoyDwB6P9hX5mah3kMKm0HHNx/EvSPJt14b+SlD8xhuZ4w9Lg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="./dashboard.css" rel="stylesheet">
   </head>
   <body class="bg-dark text-light">
@@ -48,7 +52,7 @@ try {
       <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search" disabled>
+      <input id="searchInput" class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
       <div class="navbar-nav">
         <div class="nav-item text-nowrap">
           <a class="nav-link px-3" href="./signout.php">Sign out</a>
@@ -73,24 +77,6 @@ try {
                   Accounts
                 </a>
               </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link " href="./BFP.php">
-                  <i class="fa fa-calculator" aria-hidden="true"></i>
-                  Body Fat Percentage
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./Exercises.php">
-                  <i class="fas fa-light fa-dumbbell align-text-bottom"></i>
-                  Exercise Tutorials
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./radio.php">
-                  <i class="fa fa-music" aria-hidden="true"></i>
-                  Live Radio
-                </a>
-              </li> -->
             </ul>
 
           </div>
@@ -98,106 +84,102 @@ try {
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Discover Exercies</h1>
+            <h1 class="h2">Table users</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
-              <a href="./Exercises.php">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                  More Exercises
+                <button type="button" class="btn btn-sm btn-outline-secondary" id="exportButton">
+                    <i class="fas fa-file-export"></i> Export
                 </button>
-              </a>
+
             </div>
           </div>
 
-          <div class="row mt-5 justify-content-center ">
-  <div class="col-12 col-sm-6 col-md-4 ">
-    <div class="card mb-4 border border-0 ">
-      <div class="card-body bg-dark text-white d-flex flex-column justify-content-center align-items-center">
-        <h5 class="card-title">Total Users</h5>
-        <h1 class="card-text fs-1" style="color:  #f9ef23;"><?php echo $totalUsers; ?></h1>
+          <div class="table-responsive">
+          <table class="table table-striped table-sm table-dark" id="userTable">
+            <thead>
+              <tr>
+              <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Exercises</th>
+                <th>Ticket ID</th>
+                <th>Reset Password</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this user?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmDelete">Delete</button>
       </div>
     </div>
   </div>
-  <div class="col-12 col-sm-6 col-md-4">
-    <div class="card mb-4 border border-0">
-      <div class="card-body bg-dark text-white d-flex flex-column justify-content-center align-items-center">
-        <h5 class="card-title">Total Exercises</h5>
-        <h1 class="card-text" id="totalExercises" style="color:  #f9ef23;"></h1>
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">Success</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Email sent successfully!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Error Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        An error occurred.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
 
 
-
-
-
-            <!-- <div id="exerciseList" class="row"></div>
-          <div class="modal fade" id="exerciseModal" tabindex="-1" aria-labelledby="exerciseModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-              <div class="modal-content bg-dark">
-                <div class="modal-header"></div>
-                <div class="modal-body">
-                 
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-custom text" data-bs-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
-          <div class="modal fade" id="Savenotice" tabindex="-1" aria-labelledby="SavenoticeModalLabel" aria-hidden="true">
-        <div class="modal-dialog ">
-          <div class="modal-content bg-dark ">
-            <div class="modal-header">
-              
-            </div>
-            <div class="modal-body">
-              <!-- API data will be dynamically inserted here -->
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-custom text" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h2 class="h2">Todays Quotes</h2> 
-            <div class="btn-toolbar mb-2 mb-md-0"> 
-            </div>
-          </div> 
-
-            <div class="quote-card">
-          </div>
         </main>
         
       </div>
     </div>
-    <script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="Adminacc.js"></script>
 
-const API_URL = 'https://musclewiki.p.rapidapi.com/exercises';
-const headers = {
-  'X-RapidAPI-Key': '3ec250bf1cmsh6ba74139d7fb301p1de1eejsn7dbf4db26f0c',
-  'X-RapidAPI-Host': 'musclewiki.p.rapidapi.com'
-};
-
-async function countExercises() {
-  const response = await fetch(API_URL, {
-    method: 'GET',
-    headers: headers
-  });
-
-  const exercises = await response.json();
-  
-  // Get the HTML element with id 'totalExercises' and update its text content
-  document.getElementById('totalExercises').textContent = exercises.length;
-}
-
-countExercises();
-
-    </script>
   <!-- <script src="./UserInt.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 

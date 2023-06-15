@@ -94,24 +94,6 @@ throw new \PDOException($e->getMessage(), (int)$e->getCode());
                   Accounts
                 </a>
               </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link " href="./BFP.php">
-                  <i class="fa fa-calculator" aria-hidden="true"></i>
-                  Body Fat Percentage
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./Exercises.php">
-                  <i class="fas fa-light fa-dumbbell align-text-bottom"></i>
-                  Exercise Tutorials
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./radio.php">
-                  <i class="fa fa-music" aria-hidden="true"></i>
-                  Live Radio
-                </a>
-              </li> -->
             </ul>
 
           </div>
@@ -121,11 +103,11 @@ throw new \PDOException($e->getMessage(), (int)$e->getCode());
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Discover Exercies</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
-              <a href="./Exercises.php">
+              <!-- <a href="./Exercises.php">
                 <button type="button" class="btn btn-sm btn-outline-secondary">
                   More Exercises
                 </button>
-              </a>
+              </a> -->
             </div>
           </div>
 
@@ -147,41 +129,6 @@ throw new \PDOException($e->getMessage(), (int)$e->getCode());
     </div>
   </div>
 </div>
-
-
-
-
-
-            <!-- <div id="exerciseList" class="row"></div>
-          <div class="modal fade" id="exerciseModal" tabindex="-1" aria-labelledby="exerciseModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-              <div class="modal-content bg-dark">
-                <div class="modal-header"></div>
-                <div class="modal-body">
-                 
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-custom text" data-bs-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
-          <div class="modal fade" id="Savenotice" tabindex="-1" aria-labelledby="SavenoticeModalLabel" aria-hidden="true">
-        <div class="modal-dialog ">
-          <div class="modal-content bg-dark ">
-            <div class="modal-header">
-              
-            </div>
-            <div class="modal-body">
-              <!-- API data will be dynamically inserted here -->
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-custom text" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
 
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
