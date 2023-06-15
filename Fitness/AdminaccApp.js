@@ -13,13 +13,13 @@ $(document).ready(function() {
                 let confirmed = response[i]['Is confirmed'] ? 'Yes' : 'No'; 
 
                 let tr_str = "<tr>" +
-                "<td align='center'>" + adminID + "</td>" +
-                "<td align='center'>" + firstName + "</td>" +
-                "<td align='center'>" + lastName + "</td>" +
-                "<td align='center'>" + email + "</td>" +
-                "<td align='center'>" + confirmed + "</td>" +
-                "<td align='center'><button class='btn btn-custom confirm-admin'>Confirm</button></td>" +
-                "<td align='center'><button class='btn btn-outline-danger delete-admin'>Delete</button></td>" +
+                "<td>" + adminID + "</td>" +
+                "<td>" + firstName + "</td>" +
+                "<td>" + lastName + "</td>" +
+                "<td>" + email + "</td>" +
+                "<td>" + confirmed + "</td>" +
+                "<td><button class='btn btn-custom confirm-admin'>Confirm</button></td>" +
+                "<td><button class='btn btn-outline-danger mt-1 delete-admin'>Delete</button></td>" +
                 "</tr>";
 
                 $("#adminTable tbody").append(tr_str);
