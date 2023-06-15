@@ -77,12 +77,6 @@ $adminID = $_SESSION['adminID'];
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Table users</h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
-                <button type="button" class="btn btn-sm btn-outline-secondary" id="exportButton">
-                    <i class="fas fa-file-export"></i> Export
-                </button>
-
-            </div>
           </div>
 
           <div class="table-responsive">
@@ -106,56 +100,39 @@ $adminID = $_SESSION['adminID'];
   </div>
 </div>
 
-<div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+
+<!-- Confirm Modal -->
+<div class="modal" tabindex="-1" id="confirmModal">
   <div class="modal-dialog">
     <div class="modal-content bg-dark">
       <div class="modal-header">
         <h5 class="modal-title">Confirmation</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to delete this user?</p>
-      </div>
+        <p>Are you sure you want to confirm this admin?</p>
+        </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmDelete">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="confirmButton">Confirm</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Success Modal -->
-<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+<div class="modal" tabindex="-1" id="deleteModal">
   <div class="modal-dialog">
-  <div class="modal-content bg-dark">
+    <div class="modal-content bg-dark">
       <div class="modal-header">
-        <h5 class="modal-title" id="successModalLabel">Success</h5>
+        <h5 class="modal-title">Confirmation</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Email sent successfully!
+        <p>Are you sure you want to delete this admin?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Error Modal -->
-<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-  <div class="modal-content bg-dark">
-      <div class="modal-header">
-        <h5 class="modal-title" id="errorModalLabel">Error</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        An error occurred.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" id="deleteButton">Delete</button>
       </div>
     </div>
   </div>

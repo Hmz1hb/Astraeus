@@ -31,33 +31,43 @@ $(document).ready(function() {
 $(document).on('click', '.confirm-admin', function(){
     let adminID = $(this).closest('tr').find('td:first').text();
   
-    $.ajax({
-        url: 'confirmAdmin.php',
-        type: 'post',
-        data: {adminID: adminID},
-        success: function(response) {
-            console.log(response);
-            location.reload(); // Reload the page to update the table
-        },
-        error: function() {
-            console.log('An error occurred during admin confirmation');
-        }
+    $('#confirmModal').modal('show'); // Show the confirmation modal
+
+    // If the confirm button in the modal is clicked
+    $('#confirmButton').off('click').on('click', function() {
+        $.ajax({
+            url: 'confirmAdmin.php',
+            type: 'post',
+            data: {adminID: adminID},
+            success: function(response) {
+                console.log(response);
+                location.reload(); // Reload the page to update the table
+            },
+            error: function() {
+                console.log('An error occurred during admin confirmation');
+            }
+        });
     });
 });
 
 $(document).on('click', '.delete-admin', function(){
     let adminID = $(this).closest('tr').find('td:first').text();
-  
-    $.ajax({
-        url: 'deleteAdmin.php',
-        type: 'post',
-        data: {adminID: adminID},
-        success: function(response) {
-            console.log(response);
-            location.reload(); // Reload the page to update the table
-        },
-        error: function() {
-            console.log('An error occurred during admin deletion');
-        }
+
+    $('#deleteModal').modal('show'); // Show the deletion modal
+
+    // If the delete button in the modal is clicked
+    $('#deleteButton').off('click').on('click', function() {
+        $.ajax({
+            url: 'deleteAdmin.php',
+            type: 'post',
+            data: {adminID: adminID},
+            success: function(response) {
+                console.log(response);
+                location.reload(); // Reload the page to update the table
+            },
+            error: function() {
+                console.log('An error occurred during admin deletion');
+            }
+        });
     });
 });
