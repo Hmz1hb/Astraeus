@@ -119,44 +119,44 @@ try {
     </div>
   </div>
     <section class="vh-100 bg-image"
-    style="background-image: url('./img/pexels-tima-miroshnichenko-6389892.jpg');">
+    style="background-image: url('./img/4.jpg');">
     <div class="mask d-flex align-items-center h-100 gradient-custom-3">
       <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12 col-md-9 col-lg-7 col-xl-6">
             <div class="card" style="border-radius: 15px;">
-              <div class="card-body p-5">
+              <div class="card-body p-4">
                 <h1 class="logo mb-5 text-center">WITH <span>Astraeus</span></h1>
-                <h2 class="text-uppercase text-center mb-5 mt-5">Create an account</h2>
+                <h2 class="text-uppercase text-center mb-3 mt-2">Create an account</h2>
   
                 <form action="" method="post">
   
-                  <div class="form-outline  mb-4">
+                  <div class="form-outline  mb-3">
                     <input type="text" id="form3Example1cg" name="Fname" class="form-control form-control-lg"required />
                     <label class="form-label" for="form3Example1cg">First Name</label>
                   </div>
-                  <div class="form-outline  mb-4">
+                  <div class="form-outline  mb-3">
                     <input type="text" id="form3Example1cg" name="Lname" class="form-control form-control-lg"required />
                     <label class="form-label" for="form3Example1cg">Last Name</label>
                   </div>
-                  <div class="form-outline mb-4">
+                  <div class="form-outline mb-3">
                     <input type="email" id="form3Example3cg" name="email" class="form-control form-control-lg" required/>
                     <label class="form-label" for="form3Example3cg">Your Email</label>
                   </div>
                  
                 
-                  <div class="form-outline mb-4">
+                  <div class="form-outline mb-3">
                     <input type="password" id="form3Example4cg" name="password" class="form-control form-control-lg" required/>
                     <label class="form-label" for="form3Example4cg">Password</label>
                    
                   </div>
                   <div id="passwordError" class="mb-2 mt-0"  style=" display: none; color: red; font-size: 12px;">Password must be at least 8 characters long, and include a mix of letters, numbers, and special characters.</div>
   
-                  <div class="form-outline mb-4">
+                  <div class="form-outline mb-3">
                     <input type="password" id="form3Example4cdg" name="repeat_password" class="form-control form-control-lg" required />
                     <label class="form-label" for="form3Example4cdg">Repeat your password</label>
                   </div>
-                  <div class="form-check d-flex justify-content-center mb-5">
+                  <div class="form-check d-flex justify-content-center mb-2">
                     <input class="form-check-input me-2" type="checkbox" value="" name="terms" id="form2Example3cg" required/>
                     <label class="form-check-label" for="form2Example3g">
                       I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
@@ -168,7 +168,7 @@ try {
                       class="btn btn-block btn-lg gradient-custom-4 text-body" name="register" style="background-color:#f9ef23">Register</button>
                   </div>
   
-                  <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="./login.php"
+                  <p class="text-center text-muted mt-2 mb-0">Have already an account? <a href="./login.php"
                       class="fw-bold text-body"><u>Login here</u></a></p>
   
                 </form>

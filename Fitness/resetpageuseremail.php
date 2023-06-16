@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-    <section class="vh-100 bg-image" style="background-image: url('./img/pexels-tima-miroshnichenko-6389856.jpg');">
+    <section class="vh-100 bg-image" style="background-image: url('./img/1.jpg');">
     <div class="mask d-flex align-items-center h-100 gradient-custom-3">
       <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
